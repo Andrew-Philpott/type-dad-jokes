@@ -65,11 +65,9 @@ export class Game {
     let timeNow = Date.now();
     let gameTime = timeNow - this.getStartTime();
     this.setGameTime(gameTime);
-    this.setMinutes((Math.floor((gameTime/1000)))/60);
-    this.setSeconds((Math.floor((gameTime/1000)))%60);
+    this.setMinutes(Math.floor(gameTime / 1000) / 60);
+    this.setSeconds(Math.floor(gameTime / 1000) % 60);
     let timer = setTimeout(this.startTimer, 500);
     return timer;
   }
-  
 }
-
