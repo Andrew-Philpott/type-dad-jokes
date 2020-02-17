@@ -40,6 +40,7 @@ export class Game {
     this.charactersIndex--;
   }
   getStartTime() {
+    console.log("getStartTime",this.startTime)
     return this.startTime;
   }
   setStartTime() {
@@ -79,13 +80,15 @@ export class Game {
     this.startTimer();
   }
   startTimer() {
-    let timeNow = Date.now();
-    let gameTime = timeNow - this.getStartTime();
+    console.log(this.startTime + " start time")
+    let timeNow = Math.floor(Date.now()/1000);
+    console.log(timeNow + " time now");
+    let gameTime = timeNow - this.startTime;
+    console.log(gameTime + " Game time");
     this.setGameTime(gameTime);
     // this.setMinutes(Math.floor(gameTime / 1000) / 60);
     this.setSeconds(Math.floor(gameTime / 1000) % 60);
-    let timer = setTimeout(this.startTimer, 500);
-    return timer;
+    setTimeout(this.startTimer(), 500);
   }
 
   // checkGame() {
