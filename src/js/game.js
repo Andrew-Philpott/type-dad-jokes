@@ -8,6 +8,14 @@ export class Game {
     this.players = [];
     this.charactersIndex = 0;
     this.inputtedCharacters = [];
+    this.charactersMatch = [];
+    this.errors = 0;
+  }
+  getErrors() {
+    return this.errors;
+  }
+  incrementErrors() {
+    this.errors++;
   }
   getSeconds() {
     return this.seconds;
@@ -27,6 +35,9 @@ export class Game {
   getWords() {
     return this.words;
   }
+  getGameTime() {
+    return this.gameTime;
+  }
   setWords(paragraph) {
     this.words = paragraph.split(" ");
   }
@@ -43,24 +54,10 @@ export class Game {
     return this.startTime;
   }
   setStartTime() {
-    this.startTime = Date.now();
+    this.startTime = Math.floor(Date.now()/1000);
   }
-  setGameTime(gameTime) {
-    this.gameTime = gameTime;
-  }
-  startGame() {
-    this.round = false;
-    this.setGameTime(0);
-    this.setStartTime();
-    this.startTimer();
-  }
-  startTimer() {
-    let timeNow = Date.now();
-    let gameTime = timeNow - this.getStartTime();
-    this.setGameTime(gameTime);
-    this.setSeconds(Math.floor(gameTime / 1000) % 60);
-    let timer = setTimeout(this.startTimer(), 500);
-    return timer;
+  setGameTime(time) {
+    this.gameTime = time;
   }
   setText(paragraph) {
     this.setInputtedCharacters("");
@@ -86,12 +83,42 @@ export class Game {
   // }
   // getWordCompletionTime(word) {
   // }
+  startGame() {
+    this.round = false;
+    this.setGameTime(0);
+    this.setStartTime();
+    this.startTimer();
+  }
+  startTimer() {
+    console.log(this.startTime + " start time")
+    let timeNow = Math.floor(Date.now()/1000);
+    console.log(timeNow + " time now");
+    let gameTime = timeNow - this.startTime;
+    console.log(gameTime + " Game time");
+    this.setGameTime(gameTime);
+    // this.setMinutes(Math.floor(gameTime / 1000) / 60);
+    this.setSeconds(Math.floor(gameTime / 1000) % 60);
+    setTimeout(this.startTimer(), 500);
+  }
+
   // checkGame() {
   //   if (this.charactersIndex === charactersCount) {
   //     this.round = true;
   //   }
   // }
+  // checkWord() {
 
+  // }
+
+  // checkCharacter(pushedKey) {
+  //   if(this.characters[this.charactersIndex] !== pushedKey) {
+  //     this.incrementErrors();
+  //   } else if(this.characters[this.charactersIndex] === " ") {
+  //     this.checkWord();
+  //   }
+
+  //   console.log(`checked ${character}`);
+  // }
   checkCharacter(character) {
     console.log(`checked ${character}`);
   }

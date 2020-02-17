@@ -77,7 +77,8 @@ $(document).ready(function() {
   $("#start-button").click(function(event) {
     event.preventDefault();
     game.setStartTime();
-    timer = game.startTimer();
+    console.log(game.startTime + " start time index.js");
+    game.startTimer();
     $("#start-button").hide();
   });
 
