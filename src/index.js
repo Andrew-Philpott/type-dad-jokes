@@ -7,9 +7,7 @@ import { Game } from "./js/game";
 
 function callAPI(game) {
   // Call API, format and display response
-  let response = fetch(
-    `http://newsapi.org/v2/everything?q=coding&apiKey=53408179452042078867cb5251efbeb6`
-  );
+  let response = fetch(``);
   console.log(response);
 
   console.log("API Called");
@@ -22,7 +20,7 @@ function callAPI(game) {
 
 function formatParagraph(paragraph) {
   let wordsArray = paragraph.split(" ");
-  let shortWordsArray;
+  let shortWordsArray = wordsArray;
   if (shortWordsArray.length > 100) {
     shortWordsArray = wordsArray.slice(0, 101);
   } else {
