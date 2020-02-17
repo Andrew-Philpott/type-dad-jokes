@@ -45,10 +45,10 @@ $(document).ready(function() {
   $("#name-form").submit(function(event) {
     event.preventDefault();
     const name1 = $("#name-input").val();
-    console.log(name1);
     const player1 = new Player(name1);
     game.addPlayer(player1);
     $("player-name").show();
+    $("#player-name").text(name1);
     $("#stats-box").show();
     $("#name-form").hide();
     $("#paragraph-box").show();
