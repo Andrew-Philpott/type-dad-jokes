@@ -41,8 +41,16 @@ function formatParagraph(paragraph) {
 
 function displayParagraph(formattedParagraph) {
   // Display paragraph text to screen
-  console.log("display " + formattedParagraph);
   $("#paragraph-box").text(formattedParagraph);
+}
+
+function displayStats(game) {
+  console.log(game);
+  let player = game.calculateScore();
+  $("#timer").text(`${game.getSeconds}`);
+  $("#wpm").text(`${player.wordsPerMinute}`);
+  $("#cpm").text(`${player.charactersPerMinute}`);
+  $("#errors").text(`${player.errors}`);
 }
 
 $(document).ready(function() {
@@ -63,15 +71,14 @@ $(document).ready(function() {
     $("#paragraph-box").show();
     $("start-button").show();
     $("#paragraph-button").show();
-    console.log("name submitted");
   });
 
   // ON CLICK ON START BUTTON
   $("#start-button").click(function(event) {
     event.preventDefault();
-    console.log("start button clicked");
     game.setStartTime();
-    timer = game.startTimer();
+    console.log(game.startTime + " start time index.js");
+    game.startTimer();
     $("#start-button").hide();
   });
 
@@ -81,25 +88,15 @@ $(document).ready(function() {
     callAPI(game);
     clearTimeout(timer);
     $("#start-button").show();
-    $("#stats-box").empty();
-    console.log("change paragraph button clicked");
+    $(".stats").empty();
   });
 
   // ON KEY PRESS
-  $(document).keydown(function(event) {
-    console.log("Key " + event.which + "pressed");
-
+  $(document).keypress(function(event) {
     game.checkCharacter(event.which);
-    console.log("character checked");
     if (game.isRoundOver()) {
       clearTimeout(timer);
-      let player = game.calculateScore();
-      $("stats-box").text(`${player.playerName}
-      Words per minute: ${player.wordsPerMinute}
-      Characters per minute: ${player.charactersPerMinute}
-      Errors: ${player.errors}
-      Time: ${game.getSeconds}
-      `);
+      displayStats(game);
       $("#start-button").show();
       $("#paragraph-button").show();
     }

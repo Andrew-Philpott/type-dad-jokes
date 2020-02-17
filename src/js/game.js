@@ -8,6 +8,14 @@ export class Game {
     this.players = [];
     this.charactersIndex = 0;
     this.inputtedCharacters = [];
+    this.charactersMatch = [];
+    this.errors = 0;
+  }
+  getErrors() {
+    return this.errors;
+  }
+  incrementErrors() {
+    this.errors++;
   }
   getSeconds() {
     return this.seconds;
@@ -27,6 +35,9 @@ export class Game {
   getWords() {
     return this.words;
   }
+  getGameTime() {
+    return this.gameTime;
+  }
   setWords(paragraph) {
     this.words = paragraph.split(" ");
   }
@@ -44,10 +55,10 @@ export class Game {
     return this.startTime;
   }
   setStartTime() {
-    this.startTime = Date.now();
+    this.startTime = Math.floor(Date.now()/1000);
   }
-  setGameTime(gameTime) {
-    this.gameTime = gameTime;
+  setGameTime(time) {
+    this.gameTime = time;
   }
   setText(paragraph) {
     this.setInputtedCharacters("");
@@ -96,7 +107,19 @@ export class Game {
   //     this.round = true;
   //   }
   // }
+  // checkWord() {
 
+  // }
+
+  // checkCharacter(pushedKey) {
+  //   if(this.characters[this.charactersIndex] !== pushedKey) {
+  //     this.incrementErrors();
+  //   } else if(this.characters[this.charactersIndex] === " ") {
+  //     this.checkWord();
+  //   }
+
+  //   console.log(`checked ${character}`);
+  // }
   checkCharacter(character) {
     console.log(`checked ${character}`);
   }
