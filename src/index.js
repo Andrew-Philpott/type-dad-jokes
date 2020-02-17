@@ -17,8 +17,8 @@ function callAPI(game) {
 
 function formatParagraph(paragraph) {
   let wordsArray = paragraph.split(" ");
-  let shortWords;
-  if (shortWords.length > 100) {
+  let shortWordsArray;
+  if (shortWordsArray.length > 100) {
     shortWordsArray = wordsArray.slice(0, 101);
   } else {
     shortWordsArray = wordsArray;
