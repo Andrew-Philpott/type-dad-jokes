@@ -71,7 +71,6 @@ $(document).ready(function() {
     if (game.isRoundOver()) {
       clearTimeout(timer);
       game.calculateScore();
-      game.startGame();
       $("#start-button").show();
       $("#paragraph-button").show();
     }
