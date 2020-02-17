@@ -36,6 +36,7 @@ $(document).ready(function() {
     const player1 = new Player(name1);
     game.addPlayer(player1);
     $("player-name").show();
+    $("#stats-box").show();
     $("#name-form").hide();
     $("#paragraph-box").show();
     $("start-button").show();
@@ -68,7 +69,6 @@ $(document).ready(function() {
     if (game.isRoundOver()) {
       console.log("timer is stopped");
       game.resetSeconds();
-      $("#stats-box").show();
       $("#start-button").show();
       $("#paragraph-button").show();
     }
