@@ -70,6 +70,7 @@ $(document).ready(function() {
     callAPI(game);
     clearTimeout(timer);
     $("#start-button").show();
+    $("#stats-box").empty();
     console.log("change paragraph button clicked");
   });
 
@@ -81,7 +82,12 @@ $(document).ready(function() {
     console.log("character checked");
     if (game.isRoundOver()) {
       clearTimeout(timer);
-      game.calculateScore();
+      let player = game.calculateScore();
+      $("stats-box").text(`${player.playerName}
+      Words per minute: ${player.wordsPerMinute}
+      Characters per minute: ${player.charactersPerMinute}
+      Errors: ${player.errors}
+      `);
       $("#start-button").show();
       $("#paragraph-button").show();
     }
