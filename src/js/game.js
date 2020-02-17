@@ -3,7 +3,7 @@ export class Game {
     this.seconds = 0;
     this.characters = [];
     this.words = [];
-    this.startTime;
+    this.startTime = 0;
     this.gameTime;
     this.players = [];
     this.charactersIndex = 0;
@@ -82,7 +82,7 @@ export class Game {
     let timeNow = Date.now();
     let gameTime = timeNow - this.getStartTime();
     this.setGameTime(gameTime);
-    this.setMinutes(Math.floor(gameTime / 1000) / 60);
+    // this.setMinutes(Math.floor(gameTime / 1000) / 60);
     this.setSeconds(Math.floor(gameTime / 1000) % 60);
     let timer = setTimeout(this.startTimer, 500);
     return timer;
@@ -100,5 +100,9 @@ export class Game {
 
   isRoundOver() {
     return false;
+  }
+
+  addPlayer(playerObj) {
+    this.players.push(playerObj);
   }
 }
