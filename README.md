@@ -1,6 +1,6 @@
 # _TypingGame_
 #### _Typing speed game_, 02.17.2020_
-#### By _**Andrew Philpott, Sasa Schwartz**_
+#### By _**Andrew Philpott, Sasa Schwartz, Jiwon Han**_
 ## Description
 _This application is for checking your typing speed._
 
