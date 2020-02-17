@@ -2,9 +2,7 @@ export class Game {
   constructor() {
     this.seconds = 0;
     this.characters = [];
-    this.charactersCount = 0
     this.words = [];
-    this.wordsCount = 0;
     this.startTime;
     this.gameTime;
     this.players = [];
@@ -12,13 +10,13 @@ export class Game {
     this.errors = 0;
     this.inputtedCharacters = [];
   }
-  get errors() {
+  getErrors() {
     return this.errors;
   }
   incrementErrors() {
     this.errors++;
   }
-  get inputtedCharacters() {
+  getInputtedCharacters() {
     return this.inputtedCharacters;
   }
   getSeconds() {
@@ -49,15 +47,15 @@ export class Game {
     this.gameTime = gameTime;
   }
   setText(paragraph) {
-    this.setCharacters([]);
-    this.setWords([]);
+    this.setCharacters("");
+    this.setWords("");
     this.setCharacters(paragraph);
     this.setWords(paragraph);
   }
-  setWordCompletionTime(word) {
-  }
-  getWordCompletionTime(word) {
-  }
+  //setWordCompletionTime(word) {
+  //}
+  //getWordCompletionTime(word) {
+  //}
   startGame() {
     this.setGameTime(0);
     this.setStartTime();
