@@ -3,7 +3,7 @@ export class Game {
     this.seconds = 0;
     this.characters = [];
     this.words = [];
-    this.startTime = 0;
+    this.startTime;
     this.gameTime;
     this.players = [];
     this.charactersIndex = 0;
