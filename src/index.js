@@ -72,6 +72,7 @@ $(document).ready(function() {
     console.log("start button clicked");
     game.setStartTime();
     timer = game.startTimer();
+    console.log(game.startTime);
     $("#start-button").hide();
   });
 
@@ -86,11 +87,10 @@ $(document).ready(function() {
   });
 
   // ON KEY PRESS
-  $(document).keydown(function(event) {
-    console.log("Key " + event.which + "pressed");
+  $(document).keypress(function(event) {
+    console.log(event.which);
 
     game.checkCharacter(event.which);
-    console.log("character checked");
     if (game.isRoundOver()) {
       clearTimeout(timer);
       let player = game.calculateScore();

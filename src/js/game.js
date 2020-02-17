@@ -48,6 +48,20 @@ export class Game {
   setGameTime(gameTime) {
     this.gameTime = gameTime;
   }
+  startGame() {
+    this.round = false;
+    this.setGameTime(0);
+    this.setStartTime();
+    this.startTimer();
+  }
+  startTimer() {
+    let timeNow = Date.now();
+    let gameTime = timeNow - this.getStartTime();
+    this.setGameTime(gameTime);
+    this.setSeconds(Math.floor(gameTime / 1000) % 60);
+    let timer = setTimeout(this.startTimer, 500);
+    return timer;
+  }
   setText(paragraph) {
     this.setInputtedCharacters("");
     this.setCharacters("");
@@ -72,22 +86,6 @@ export class Game {
   // }
   // getWordCompletionTime(word) {
   // }
-  startGame() {
-    this.round = false;
-    this.setGameTime(0);
-    this.setStartTime();
-    this.startTimer();
-  }
-  startTimer() {
-    let timeNow = Date.now();
-    let gameTime = timeNow - this.getStartTime();
-    this.setGameTime(gameTime);
-    // this.setMinutes(Math.floor(gameTime / 1000) / 60);
-    this.setSeconds(Math.floor(gameTime / 1000) % 60);
-    let timer = setTimeout(this.startTimer, 500);
-    return timer;
-  }
-
   // checkGame() {
   //   if (this.charactersIndex === charactersCount) {
   //     this.round = true;
