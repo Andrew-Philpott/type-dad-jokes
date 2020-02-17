@@ -2,24 +2,12 @@ export class Game {
   constructor() {
     this.seconds = 0;
     this.characters = [];
-    this.charactersCount = 0
     this.words = [];
-    this.wordsCount = 0;
     this.startTime;
     this.gameTime;
     this.players = [];
     this.round = false;
-    this.errors = 0;
-    this.inputtedCharacters = [];
-  }
-  get errors() {
-    return this.errors;
-  }
-  incrementErrors() {
-    this.errors++;
-  }
-  get inputtedCharacters() {
-    return this.inputtedCharacters;
+    this.charactersIndex = 0;
   }
   getSeconds() {
     return this.seconds;
@@ -27,17 +15,26 @@ export class Game {
   setSeconds(seconds) {
     this.seconds = seconds;
   }
-  get charactersCount() {
-    return this.characters.length;
-  }
-  get wordsCount() {
-    return this.words.length;
+  getCharacters() {
+    return this.characters;
   }
   setCharacters(paragraph) {
     this.characters = paragraph.split("");
   }
+  findCharacterAtIndex() {
+    return this.getCharacters[this.getCharacterIndex()];
+  }
   setWords(paragraph) {
     this.words = paragraph.split(" ");
+  }
+  getCharacterIndex() {
+    return this.charactersIndex;
+  }
+  incrementCharacterIndex() {
+    this.charactersIndex++;
+  }
+  decrementCharacterIndex() {
+    this.charactersIndex--;
   }
   getStartTime() {
     return this.startTime;
@@ -49,8 +46,8 @@ export class Game {
     this.gameTime = gameTime;
   }
   setText(paragraph) {
-    this.setCharacters([]);
-    this.setWords([]);
+    this.setCharacters("");
+    this.setWords("");
     this.setCharacters(paragraph);
     this.setWords(paragraph);
   }
@@ -72,6 +69,10 @@ export class Game {
     let timer = setTimeout(this.startTimer, 500);
     return timer;
   }
-  
+  checkGame() {
+    if(this.charactersIndex === charactersCount) {
+      this.round = true;
+    }
+  }
 }
 
