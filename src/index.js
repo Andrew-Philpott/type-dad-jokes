@@ -7,9 +7,23 @@ import { Game } from "./js/game";
 
 function callAPI(game) {
   // Call API, format and display response
-  let response = fetch(`http://newsapi.org/v2/everything?q=coding&apiKey=53408179452042078867cb5251efbeb6`)
-  console.log(response);
+  fetch(
+    `https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes/30`
+  )
+    .then(function(response) {
+      let json = response.json();
+      return json;
+    })
+    .then(function(json) {
+      console.log(json[1].setup + " " + json[1].punchline);
 
+      let articles = [];
+
+      for (var i = 0; i < json.length; i++) {
+        articles.push(json[i].setup + " " + json[i].punchline);
+      }
+      console.log(articles);
+    });
 
   console.log("API Called");
   let paragraph = "API paragraph...";
