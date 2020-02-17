@@ -59,7 +59,7 @@ export class Game {
     return this.inputtedCharacters;
   }
   setInputtedCharacters(characters) {
-    return this.inputtedCharacters = characters;
+    return (this.inputtedCharacters = characters);
   }
   addCharacter(char) {
     this.getInputtedCharacters.push(char);
@@ -67,13 +67,11 @@ export class Game {
   removeCharacter() {
     this.getInputtedCharacters.pop();
   }
-  findCharacterAtIndex(index) {
-    return this.getInputtedCharacters[index];
-  }
-  setWordCompletionTime(word) {
-  }
-  getWordCompletionTime(word) {
-  }
+
+  // setWordCompletionTime(word) {
+  // }
+  // getWordCompletionTime(word) {
+  // }
   startGame() {
     this.round = false;
     this.setGameTime(0);
@@ -89,12 +87,12 @@ export class Game {
     let timer = setTimeout(this.startTimer, 500);
     return timer;
   }
-  
-  checkGame() {
-    if(this.charactersIndex === charactersCount) {
-      this.round = true;
-    }
-  }
+
+  // checkGame() {
+  //   if (this.charactersIndex === charactersCount) {
+  //     this.round = true;
+  //   }
+  // }
 
   checkCharacter(character) {
     console.log(`checked ${character}`);
