@@ -15,38 +15,33 @@ function callAPI(game) {
       return json;
     })
     .then(function(json) {
-      console.log(json);
-      let sentences = [];
-      for (var i = 0; i < json.length; i++) {
-        sentences.push(json[i].setup + " " + json[i].punchline);
+      let paragraph = "";
+      for (let i = 0; i < json.length; i++) {
+        paragraph += json[i].setup + " " + json[i].punchline + " ";
       }
-      console.log(sentences);
-      console.log(json[1].setup + " " + json[1].punchline);
+      return paragraph;
+    })
+    .then(function(paragraph) {
+      let formattedParagraph = formatParagraph(paragraph);
+      game.setText(formattedParagraph);
+      displayParagraph(formattedParagraph);
     });
-
-  console.log("API Called");
-  let paragraph = "API paragraph...";
-  let formattedParagraph = formatParagraph(paragraph);
-  game.setText(formattedParagraph);
-  console.log("new text set in game");
-  displayParagraph(formattedParagraph);
 }
 
 function formatParagraph(paragraph) {
-  let wordsArray = paragraph.split(" ");
-  let shortWordsArray = wordsArray;
+  let shortWordsArray = paragraph.split(" ");
   if (shortWordsArray.length > 100) {
-    shortWordsArray = wordsArray.slice(0, 101);
+    shortWordsArray = shortWordsArray.slice(0, 101);
   } else {
-    shortWordsArray = wordsArray;
+    shortWordsArray = shortWordsArray.slice(0);
   }
   let wordsString = shortWordsArray.join(" ");
-  console.log("format paragraph");
   return wordsString;
 }
 
 function displayParagraph(formattedParagraph) {
   // Display paragraph text to screen
+  console.log("display " + formattedParagraph);
   $("#paragraph-box").text(formattedParagraph);
 }
 
