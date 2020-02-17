@@ -1,7 +1,6 @@
 export class Game {
   constructor() {
     this.seconds = 0;
-    this.minutes = 0
     this.characters = [];
     this.charactersCount = 0
     this.words = [];
@@ -10,6 +9,17 @@ export class Game {
     this.gameTime;
     this.players = [];
     this.round = false;
+    this.errors = 0;
+    this.inputtedCharacters = [];
+  }
+  get errors() {
+    return this.errors;
+  }
+  incrementErrors() {
+    this.errors++;
+  }
+  get inputtedCharacters() {
+    return this.inputtedCharacters;
   }
   getSeconds() {
     return this.seconds;
@@ -17,23 +27,11 @@ export class Game {
   setSeconds(seconds) {
     this.seconds = seconds;
   }
-  getMinutes() {
-    return this.minutes;
+  get charactersCount() {
+    return this.characters.length;
   }
-  setMinutes(minutes) {
-    this.minutes = minutes;
-  }
-  getCharactersCount() {
-    return this.charactersCount;
-  }
-  setCharactersCount() {
-    this.charactersCount = this.characters.length;
-  }
-  getWordsCount() {
-    return this.wordsCount;
-  }
-  setWordsCount(words) {
-    this.wordsCount = this.words.length;
+  get wordsCount() {
+    return this.words.length;
   }
   setCharacters(paragraph) {
     this.characters = paragraph.split("");
@@ -47,29 +45,33 @@ export class Game {
   setStartTime() {
     this.startTime = Date.now();
   }
-  getGameTime()
+  setGameTime(gameTime) {
+    this.gameTime = gameTime;
+  }
   setText(paragraph) {
+    this.setCharacters([]);
+    this.setWords([]);
+    this.setCharacters(paragraph);
+    this.setWords(paragraph);
   }
   setWordCompletionTime(word) {
   }
   getWordCompletionTime(word) {
   }
-  resetTimer() {
-  }
-
-  startGame(paragraph) {
-    this.setCharacters(paragraph);
-    this.setCharactersCount();
-    this.setWords(paragraph);
-    this.setWordsCount();
+  startGame() {
+    this.setGameTime(0);
     this.setStartTime();
     this.startTimer();
   }
   startTimer() {
     let timeNow = Date.now();
-    this.gameTime = timeNow - this.getStartTime();
-    this.setMinutes()
-    // localStorage.setItem
+    let gameTime = timeNow - this.getStartTime();
+    this.setGameTime(gameTime);
+    this.setMinutes((Math.floor((gameTime/1000)))/60);
+    this.setSeconds((Math.floor((gameTime/1000)))%60);
+    let timer = setTimeout(this.startTimer, 500);
+    return timer;
   }
+  
 }
 
