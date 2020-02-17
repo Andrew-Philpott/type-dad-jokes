@@ -27,6 +27,7 @@ function displayParagraph(formattedParagraph) {
 
 $(document).ready(function() {
   const game = new Game();
+  let timer;
   callAPI(game);
 
   // ON SUBMIT OF USER NAME
@@ -48,15 +49,16 @@ $(document).ready(function() {
   $("#start-button").click(function(event) {
     event.preventDefault();
     console.log("start button clicked");
-    console.log("timer starts...");
+    timer = game.startTimer();
     $("#start-button").hide();
-    $("#paragraph-button").hide();
   });
 
   // ON CLICK OF CHANGE PARAGRAPH BUTTON
   $("#paragraph-button").click(function(event) {
     event.preventDefault();
     callAPI(game);
+    clearTimeout(timer);
+    $("#start-button").show();
     console.log("change paragraph button clicked");
   });
 
@@ -67,8 +69,9 @@ $(document).ready(function() {
     game.checkCharacter();
     console.log("character checked");
     if (game.isRoundOver()) {
-      console.log("timer is stopped");
-      game.resetSeconds();
+      clearTimeout(timer);
+      game.calculateScore();
+      game.startGame();
       $("#start-button").show();
       $("#paragraph-button").show();
     }
