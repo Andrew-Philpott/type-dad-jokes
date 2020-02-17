@@ -61,6 +61,7 @@ $(document).ready(function() {
   $("#start-button").click(function(event) {
     event.preventDefault();
     console.log("start button clicked");
+    game.setStartTime();
     timer = game.startTimer();
     $("#start-button").hide();
   });
@@ -88,6 +89,7 @@ $(document).ready(function() {
       Words per minute: ${player.wordsPerMinute}
       Characters per minute: ${player.charactersPerMinute}
       Errors: ${player.errors}
+      Time: ${game.getSeconds}
       `);
       $("#start-button").show();
       $("#paragraph-button").show();
