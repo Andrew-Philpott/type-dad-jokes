@@ -7,9 +7,10 @@ import { Game } from "./js/game";
 
 function callAPI(game) {
   // Call API, format and display response
-  let response = fetch(`http://newsapi.org/v2/everything?q=coding&apiKey=53408179452042078867cb5251efbeb6`)
+  let response = fetch(
+    `http://newsapi.org/v2/everything?q=coding&apiKey=53408179452042078867cb5251efbeb6`
+  );
   console.log(response);
-
 
   console.log("API Called");
   let paragraph = "API paragraph...";
