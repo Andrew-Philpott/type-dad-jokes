@@ -4,7 +4,6 @@ export class Player {
     this.wordsPerMinute = 0;
     this.charsPerMinute = 0;
     this.errors = 0;
-    this.inputtedCharacters = [];
   }
   getName() {
     return this.name;
@@ -14,17 +13,5 @@ export class Player {
   }
   incrementErrors() {
     this.errors++;
-  }
-  getInputtedCharacters() {
-    return this.inputtedCharacters;
-  }
-  addCharacter(char) {
-    this.getInputtedCharacters.push(char);
-  }
-  removeCharacter() {
-    this.getInputtedCharacters.pop();
-  }
-  findCharacterAtIndex(index) {
-    return this.getInputtedCharacters[index];
   }
 }

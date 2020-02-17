@@ -6,8 +6,8 @@ export class Game {
     this.startTime;
     this.gameTime;
     this.players = [];
-    this.round = false;
     this.charactersIndex = 0;
+    this.inputtedCharacters = [];
   }
   getSeconds() {
     return this.seconds;
@@ -23,6 +23,9 @@ export class Game {
   }
   findCharacterAtIndex() {
     return this.getCharacters[this.getCharacterIndex()];
+  }
+  getWords() {
+    return this.words;
   }
   setWords(paragraph) {
     this.words = paragraph.split(" ");
@@ -46,16 +49,33 @@ export class Game {
     this.gameTime = gameTime;
   }
   setText(paragraph) {
+    this.setInputtedCharacters("");
     this.setCharacters("");
     this.setWords("");
     this.setCharacters(paragraph);
     this.setWords(paragraph);
+  }
+  getInputtedCharacters() {
+    return this.inputtedCharacters;
+  }
+  setInputtedCharacters(characters) {
+    return this.inputtedCharacters = characters;
+  }
+  addCharacter(char) {
+    this.getInputtedCharacters.push(char);
+  }
+  removeCharacter() {
+    this.getInputtedCharacters.pop();
+  }
+  findCharacterAtIndex(index) {
+    return this.getInputtedCharacters[index];
   }
   setWordCompletionTime(word) {
   }
   getWordCompletionTime(word) {
   }
   startGame() {
+    this.round = false;
     this.setGameTime(0);
     this.setStartTime();
     this.startTimer();
@@ -69,6 +89,7 @@ export class Game {
     let timer = setTimeout(this.startTimer, 500);
     return timer;
   }
+  
   checkGame() {
     if(this.charactersIndex === charactersCount) {
       this.round = true;
