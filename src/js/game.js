@@ -59,7 +59,7 @@ export class Game {
     let gameTime = timeNow - this.getStartTime();
     this.setGameTime(gameTime);
     this.setSeconds(Math.floor(gameTime / 1000) % 60);
-    let timer = setTimeout(this.startTimer, 500);
+    let timer = setTimeout(this.startTimer(), 500);
     return timer;
   }
   setText(paragraph) {
