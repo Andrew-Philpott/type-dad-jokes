@@ -45,6 +45,7 @@ $(document).ready(function() {
   $("#name-form").submit(function(event) {
     event.preventDefault();
     const name1 = $("#name-input").val();
+    console.log(name1);
     const player1 = new Player(name1);
     game.addPlayer(player1);
     $("player-name").show();
@@ -78,7 +79,7 @@ $(document).ready(function() {
   $(document).keydown(function(event) {
     console.log("Key " + event.which + "pressed");
 
-    game.checkCharacter();
+    game.checkCharacter(event.which);
     console.log("character checked");
     if (game.isRoundOver()) {
       clearTimeout(timer);

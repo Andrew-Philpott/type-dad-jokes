@@ -70,4 +70,12 @@ export class Game {
     let timer = setTimeout(this.startTimer, 500);
     return timer;
   }
+
+  checkCharacter(character) {
+    console.log(`checked ${character}`);
+  }
+
+  isRoundOver() {
+    return false;
+  }
 }
