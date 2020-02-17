@@ -3,21 +3,11 @@ export class Game {
     this.seconds = 0;
     this.characters = [];
     this.words = [];
-    this.startTime;
+    this.startTime = 0;
     this.gameTime;
     this.players = [];
-    this.round = false;
-    this.errors = 0;
+    this.charactersIndex = 0;
     this.inputtedCharacters = [];
-  }
-  getErrors() {
-    return this.errors;
-  }
-  incrementErrors() {
-    this.errors++;
-  }
-  getInputtedCharacters() {
-    return this.inputtedCharacters;
   }
   getSeconds() {
     return this.seconds;
@@ -25,17 +15,29 @@ export class Game {
   setSeconds(seconds) {
     this.seconds = seconds;
   }
-  get charactersCount() {
-    return this.characters.length;
-  }
-  get wordsCount() {
-    return this.words.length;
+  getCharacters() {
+    return this.characters;
   }
   setCharacters(paragraph) {
     this.characters = paragraph.split("");
   }
+  findCharacterAtIndex() {
+    return this.getCharacters[this.getCharacterIndex()];
+  }
+  getWords() {
+    return this.words;
+  }
   setWords(paragraph) {
     this.words = paragraph.split(" ");
+  }
+  getCharacterIndex() {
+    return this.charactersIndex;
+  }
+  incrementCharacterIndex() {
+    this.charactersIndex++;
+  }
+  decrementCharacterIndex() {
+    this.charactersIndex--;
   }
   getStartTime() {
     return this.startTime;
@@ -47,16 +49,31 @@ export class Game {
     this.gameTime = gameTime;
   }
   setText(paragraph) {
+    this.setInputtedCharacters("");
     this.setCharacters("");
     this.setWords("");
     this.setCharacters(paragraph);
     this.setWords(paragraph);
   }
-  //setWordCompletionTime(word) {
-  //}
-  //getWordCompletionTime(word) {
-  //}
+  getInputtedCharacters() {
+    return this.inputtedCharacters;
+  }
+  setInputtedCharacters(characters) {
+    return (this.inputtedCharacters = characters);
+  }
+  addCharacter(char) {
+    this.getInputtedCharacters.push(char);
+  }
+  removeCharacter() {
+    this.getInputtedCharacters.pop();
+  }
+
+  // setWordCompletionTime(word) {
+  // }
+  // getWordCompletionTime(word) {
+  // }
   startGame() {
+    this.round = false;
     this.setGameTime(0);
     this.setStartTime();
     this.startTimer();
@@ -65,11 +82,27 @@ export class Game {
     let timeNow = Date.now();
     let gameTime = timeNow - this.getStartTime();
     this.setGameTime(gameTime);
-    this.setMinutes((Math.floor((gameTime/1000)))/60);
-    this.setSeconds((Math.floor((gameTime/1000)))%60);
+    // this.setMinutes(Math.floor(gameTime / 1000) / 60);
+    this.setSeconds(Math.floor(gameTime / 1000) % 60);
     let timer = setTimeout(this.startTimer, 500);
     return timer;
   }
-  
-}
 
+  // checkGame() {
+  //   if (this.charactersIndex === charactersCount) {
+  //     this.round = true;
+  //   }
+  // }
+
+  checkCharacter(character) {
+    console.log(`checked ${character}`);
+  }
+
+  isRoundOver() {
+    return false;
+  }
+
+  addPlayer(playerObj) {
+    this.players.push(playerObj);
+  }
+}

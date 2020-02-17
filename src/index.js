@@ -33,8 +33,16 @@ function callAPI(game) {
 }
 
 function formatParagraph(paragraph) {
+  let wordsArray = paragraph.split(" ");
+  let shortWordsArray = wordsArray;
+  if (shortWordsArray.length > 100) {
+    shortWordsArray = wordsArray.slice(0, 101);
+  } else {
+    shortWordsArray = wordsArray;
+  }
+  let wordsString = shortWordsArray.join(" ");
   console.log("format paragraph");
-  return paragraph;
+  return wordsString;
 }
 
 function displayParagraph(formattedParagraph) {
@@ -54,6 +62,7 @@ $(document).ready(function() {
     const player1 = new Player(name1);
     game.addPlayer(player1);
     $("player-name").show();
+    $("#player-name").text(name1);
     $("#stats-box").show();
     $("#name-form").hide();
     $("#paragraph-box").show();
@@ -76,6 +85,7 @@ $(document).ready(function() {
     callAPI(game);
     clearTimeout(timer);
     $("#start-button").show();
+    $("#stats-box").empty();
     console.log("change paragraph button clicked");
   });
 
@@ -83,11 +93,16 @@ $(document).ready(function() {
   $(document).keydown(function(event) {
     console.log("Key " + event.which + "pressed");
 
-    game.checkCharacter();
+    game.checkCharacter(event.which);
     console.log("character checked");
     if (game.isRoundOver()) {
       clearTimeout(timer);
-      game.calculateScore();
+      let player = game.calculateScore();
+      $("stats-box").text(`${player.playerName}
+      Words per minute: ${player.wordsPerMinute}
+      Characters per minute: ${player.charactersPerMinute}
+      Errors: ${player.errors}
+      `);
       $("#start-button").show();
       $("#paragraph-button").show();
     }
