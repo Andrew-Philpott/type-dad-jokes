@@ -7,7 +7,7 @@ import { Game } from "./js/game";
 
 function callAPI(game) {
   // Call API, format and display response
-  let response = fetch(
+  fetch(
     `https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes/30`
   )
     .then(function(response) {
@@ -15,13 +15,13 @@ function callAPI(game) {
       return json;
     })
     .then(function(json) {
-      console.log(response);
       console.log(json);
       let sentences = [];
       for (var i = 0; i < json.length; i++) {
         sentences.push(json[i].setup + " " + json[i].punchline);
       }
       console.log(sentences);
+      console.log(json[1].setup + " " + json[1].punchline);
     });
 
   console.log("API Called");
