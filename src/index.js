@@ -64,13 +64,28 @@ function updateParagraph(game) {
     let newPosition = position - letterWidth;
     $("#paragraph").offset({ left: newPosition });
   }
-
   $(`#${index}`).removeClass();
   $(`#${index + 1}`).addClass("next");
   if (game.inputtedCharacters[index]) {
     $(`#${index}`).addClass("correct");
   } else {
     $(`#${index}`).addClass("error");
+  }
+}
+
+function backSpace(game, prevIndex) {
+  let index = game.getCharacterIndex();
+
+  if (index + 1 < game.getCharacters().length && index !== prevIndex) {
+    let position = $("#paragraph").offset().left;
+    let letterWidth = $(`#${index}`).width();
+    let newPosition = position + letterWidth;
+    $("#paragraph").offset({ left: newPosition });
+
+    $(`#${index + 1}`).removeClass();
+    $(`#${index + 1}`).addClass("neutral");
+    $(`#${index}`).removeClass();
+    $(`#${index}`).addClass("next");
   }
 }
 
@@ -125,7 +140,6 @@ $(document).ready(function() {
     $(document).keypress(function(event) {
       game.checkCharacter(event.which);
       updateParagraph(game);
-      displayStats(game);
       if (game.isRoundOver()) {
         game.clearTimer();
         $("#start-button").show();
@@ -136,11 +150,11 @@ $(document).ready(function() {
     // ON KEY DOWN (backspace recognition)
     $(document).keydown(function(event) {
       if (event.which === 8) {
+        let prevIndex = game.getCharacterIndex();
         game.checkCharacter(event.which);
-        updateParagraph(game);
+        backSpace(game, prevIndex);
         displayStats(game);
         if (game.isRoundOver()) {
-          displayStats(game);
           game.clearTimer();
           $("#start-button").show();
           $("#paragraph-button").show();
