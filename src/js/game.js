@@ -5,6 +5,7 @@ export class Game {
     this.words = [];
     this.startTime;
     this.gameTime;
+    this.timer;
     this.players = [];
     this.charactersIndex = 0;
     this.wordsIndex = 0;
@@ -82,21 +83,26 @@ export class Game {
     this.round = false;
     this.setGameTime(0);
     this.setStartTime();
-    this.startTimer();
   }
-  
   startTimer() {
+    this.timer = setInterval(() => {
+      this.updateGameTime();
+    },1000)
+  }
+  clearTimer() {
+    clearInterval(this.timer);
+  }
+  updateGameTime() {
     console.log(this.startTime + " start time");
     let timeNow = Math.floor(Date.now() / 1000);
     console.log(timeNow + " time now");
     let gameTime = timeNow - this.startTime;
-    console.log(gameTime + " Game time");
+   // console.log(gameTime + " Game time");
     this.setGameTime(gameTime);
+    console.log(this.gameTime);
     // this.setMinutes(Math.floor(gameTime / 1000) / 60);
     this.setSeconds(Math.floor(gameTime / 1000) % 60);
-    setTimeout(this.startTimer(), 500);
   }
-
   checkWord() {
     let matches = [];
     let i = 0;
@@ -137,7 +143,6 @@ export class Game {
   isRoundOver() {
     return false;
   }
-
   
   addPlayer(playerObj) {
     this.players.push(playerObj);

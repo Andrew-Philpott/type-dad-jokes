@@ -76,7 +76,6 @@ function displayStats(game) {
 
 $(document).ready(function() {
   const game = new Game();
-  let timer;
   callAPI(game);
 
   // ON SUBMIT OF USER NAME
@@ -97,7 +96,6 @@ $(document).ready(function() {
   $("#start-button").click(function(event) {
     event.preventDefault();
     game.setStartTime();
-    console.log(game.startTime + " start time index.js");
     game.startTimer();
     $("#start-button").hide();
   });
@@ -106,7 +104,6 @@ $(document).ready(function() {
   $("#paragraph-button").click(function(event) {
     event.preventDefault();
     callAPI(game);
-    clearTimeout(timer);
     $("#start-button").show();
     $(".stats").empty();
   });
@@ -116,7 +113,6 @@ $(document).ready(function() {
     game.checkCharacter(event.which);
     updateParagraphColor(game);
     if (game.isRoundOver()) {
-      clearTimeout(timer);
       displayStats(game);
       $("#start-button").show();
       $("#paragraph-button").show();
