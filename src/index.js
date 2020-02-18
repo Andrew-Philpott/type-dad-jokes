@@ -111,9 +111,9 @@ $(document).ready(function() {
   // ON CLICK ON START BUTTON
   $("#start-button").click(function(event) {
     event.preventDefault();
-    $("#traffic-light").show();
+    $("#traffic-light-bg").fadeIn();
     setTimeout(() => {
-      $("#traffic-light").hide();
+      $("#traffic-light-bg").hide();
       game.setStartTime();
       game.startTimer();
       game.setText(game.paragraph);
