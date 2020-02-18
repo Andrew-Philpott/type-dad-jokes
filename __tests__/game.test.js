@@ -109,6 +109,30 @@ describe("Game",() => {
         //Idk why these values are 0, will come back to it
     })
 
-    
+    test("Should loop over our characters, look for a space and then say every char before that space is apart of a word", () => {
+        newGame.setCharacters("Hello");
+        newGame.inputtedCharacters = ["H", "e", "l", "l", "o"];
+        newGame.checkWord()
+        expect(newGame.wordsCorrect).toEqual(1);
+
+        // Even when there are 2 words in the array it returns 1 because it checks only before a space
+        newGame.wordsCorrect = 0;
+        newGame.setCharacters("Hello World");
+        newGame.inputtedCharacters = ["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"];
+        newGame.checkWord()
+        expect(newGame.wordsCorrect).toEqual(1);
+    })
+
+    test("Should check if a keypressed by the user is the correct one being displayed and push true or false and increase our error count if it is false when we call checkCharacter", () => {
+        newGame.characters = ["a"]
+        newGame.checkCharacter(97);
+        expect(newGame.inputtedCharacters[0]).toEqual(true);
+        expect(newGame.errors).toEqual(0);
+
+        newGame.characters = ["a"]
+        newGame.charactersIndex = 0;
+        newGame.checkCharacter(98);
+        expect(newGame.errors).toEqual(1);
+    })
 
 })
