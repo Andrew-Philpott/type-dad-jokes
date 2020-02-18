@@ -1,0 +1,53 @@
+.container {
+  border: 5px solid purple;
+  text-align: center;
+  height: 90vh;
+}
+
+#name-form {
+  margin-top: 40%;
+  font-size: 24px;
+}
+
+#page-two {
+  display: none;
+}
+
+#player-name {
+  border: 5px solid red;
+  height: 100px;
+  width: 100%;
+}
+
+#stats-box {
+  border: 5px solid green;
+  height: 200px;
+  width: 100%;
+  margin-left: 0px;
+}
+
+#paragraph-box {
+  border: 5px solid blue;
+  height: 500px;
+  width: 100%;
+  display: none;
+}
+
+#paragraph-button {
+  margin: 5%;
+  font-size: 28px;
+}
+
+#start-button {
+  margin: 5%;
+  font-size: 28px;
+}
+
+.correct {
+  font-weight: 800;
+}
+
+.error {
+  font-weight: 800;
+  color: red;
+}
