@@ -31,9 +31,6 @@ export class Game {
   setCharacters(paragraph) {
     this.characters = paragraph.split("");
   }
-  findCharacterAtIndex() {
-    return this.getCharacters[this.getCharacterIndex()];
-  }
   getWords() {
     return this.words;
   }
@@ -80,9 +77,6 @@ export class Game {
   }
   addCharacter(char) {
     this.getInputtedCharacters.push(char);
-  }
-  removeCharacter() {
-    this.getInputtedCharacters.pop();
   }
   startGame() {
     this.round = false;
@@ -144,6 +138,7 @@ export class Game {
     return false;
   }
 
+  
   addPlayer(playerObj) {
     this.players.push(playerObj);
   }
