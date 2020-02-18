@@ -50,7 +50,7 @@ function displayParagraph(game) {
     let spanChar = `<span id=${i} class="neutral">${paragraph[i]}</span>`;
     spanParagraph += spanChar;
   }
-  $("#paragraph-box").text(spanParagraph);
+  $("#paragraph-box").append(spanParagraph);
 }
 
 function updateParagraphColor(game) {

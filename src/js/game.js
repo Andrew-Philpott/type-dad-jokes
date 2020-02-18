@@ -7,9 +7,11 @@ export class Game {
     this.gameTime;
     this.players = [];
     this.charactersIndex = 0;
+    this.wordsIndex = 0;
     this.inputtedCharacters = [];
     this.paragraph = "";
     this.errors = 0;
+    this.wordsCorrect = 0;
   }
   getErrors() {
     return this.errors;
@@ -82,7 +84,6 @@ export class Game {
   removeCharacter() {
     this.getInputtedCharacters.pop();
   }
-
   // setWordCompletionTime(word) {
   // }
   // getWordCompletionTime(word) {
@@ -105,6 +106,23 @@ export class Game {
     setTimeout(this.startTimer(), 500);
   }
 
+  checkWord() {
+    let reverseWord = [];
+    let i = 0;
+    while (
+      this.characters[this.charactersIndex + i] !== " " &&
+      this.charactersIndex + i >= 0
+    ) {
+      console.log(this.characters[this.charactersIndex + i]);
+      reverseWord.push(this.characters[this.charactersIndex + i]);
+      i--;
+    }
+    let word = reverseWord.reverse().join("");
+    console.log(word);
+    if (word === this.words[this.wordsIndex]) {
+      this.wordsCorrect = this.wordsCorrect + 1;
+    }
+  }
   // checkGame() {
   //   if (this.charactersIndex === charactersCount) {
   //     this.round = true;
@@ -119,8 +137,8 @@ export class Game {
     } else if (this.characters[this.charactersIndex] === " ") {
       this.checkWord();
     }
-    incrementCharacterIndex();
-    console.log(`checked ${character}`);
+    this.incrementCharacterIndex();
+    console.log(`checked ${pushedKey}`);
   }
 
   isRoundOver() {
