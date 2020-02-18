@@ -1,4 +1,4 @@
-import { Player } from './player.js';
+import { Player } from "./player.js";
 
 export class Game {
   constructor() {
@@ -124,8 +124,8 @@ export class Game {
   }
 
   changePlayer() {
-    if(this.players.length !== 1) {
-      if(this.currentPlayer === this.players[0]) {
+    if (this.players.length !== 1) {
+      if (this.currentPlayer === this.players[0]) {
         this.setCurrentPlayer(1);
       } else {
         this.setCurrentPlayer(0);
@@ -165,14 +165,16 @@ export class Game {
     }
   }
   calculateScore() {
-    if(this.currentPlayer instanceof Player) {
+    if (this.currentPlayer instanceof Player) {
       this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMintue());
-      this.currentPlayer.setCharactersPerMinute(this.calculateCharactersPerMintue());
+      this.currentPlayer.setCharactersPerMinute(
+        this.calculateCharactersPerMintue()
+      );
       this.currentPlayer.setErrors(this.getErrors());
     }
   }
   calculateWordsPerMintue() {
-    if(this.wordsCorrect === 0) {
+    if (this.wordsCorrect === 0) {
       return 0;
     } else {
       let wordsPerMinute = Math.floor((this.wordsCorrect / this.gameTime) * 60);
