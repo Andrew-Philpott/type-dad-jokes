@@ -22,9 +22,10 @@ function callAPI(game) {
       return paragraph;
     })
     .then(function(paragraph) {
+      console.log("paragraph " + paragraph);
       let formattedParagraph = formatParagraph(paragraph);
       game.setText(formattedParagraph);
-      console.log(game.paragraph);
+      console.log("game paragraph stored " + game.paragraph);
       displayParagraph(game);
     });
 }
@@ -66,7 +67,7 @@ function updateParagraphColor(game) {
 
 function displayStats(game) {
   console.log(game);
-  let player = game.calculateScore();
+  let player = game.calculateScore(); // THIS FUNCTION HASN'T BEEN WRITTEN YET, HENCE WHY SCORES DON'T SHOW
   $("#timer").text(`${game.getSeconds}`);
   $("#wpm").text(`${player.wordsPerMinute}`);
   $("#cpm").text(`${player.charactersPerMinute}`);
