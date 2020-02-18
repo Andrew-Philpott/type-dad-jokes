@@ -1,5 +1,3 @@
-import { Player } from "./player.js";
-
 export class Game {
   constructor() {
     this.characters = [];
@@ -14,6 +12,7 @@ export class Game {
     this.paragraph = "";
     this.errors = 0;
     this.wordsCorrect = 0;
+    this.currentPlayer;
   }
   getErrors() {
     return this.errors;
@@ -93,6 +92,7 @@ export class Game {
   }
   clearTimer() {
     clearInterval(this.timer);
+    this.gameTime = 0;
   }
   updateGameTime() {
     let timeNow = Math.floor(Date.now() / 1000);
@@ -114,6 +114,16 @@ export class Game {
     let checkMatches = matches => matches.every(match => match === true);
     if (checkMatches) {
       this.wordsCorrect = this.wordsCorrect + 1;
+    }
+  }
+
+  changePlayer() {
+    if(this.players.length !== 1) {
+      if(this.currentPlayer === this.players[0]) {
+        this.currentPlayer = this.players[1];
+      } else {
+        this.currentPlayer = this.players[0];
+      }
     }
   }
 
@@ -141,12 +151,10 @@ export class Game {
       }
     }
   }
-  calculateScore(player) {
-    if (player instanceof Player) {
-      player.setWordsPerMinute(this.calculateWordsPerMintue());
-      player.setCharactersPerMinute(this.calculateCharactersPerMintue());
-      player.setErrors(this.getErrors());
-    }
+  calculateScore() {
+      this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMintue());
+      this.currentPlayer.setCharactersPerMinute(this.calculateCharactersPerMintue());
+      this.currentPlayer.setErrors(this.getErrors());
   }
   calculateWordsPerMintue() {
     let wordsPerMinute = parseFloat((this.wordsCorrect / this.gameTime) * 60);
