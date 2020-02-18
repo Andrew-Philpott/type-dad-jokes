@@ -55,9 +55,7 @@ function displayParagraph(game) {
 function updateParagraphColor(game) {
   // Change color of text based on correctness
   let index = game.getCharacterIndex() - 1;
-  console.log("index " + index);
   $(`#${index}`).removeClass();
-  console.log("current " + game.inputtedCharacters[index]);
   if (game.inputtedCharacters[index]) {
     $(`#${index}`).addClass("correct");
   } else {
@@ -66,7 +64,6 @@ function updateParagraphColor(game) {
 }
 
 function displayStats(game) {
-  console.log(game);
   let player = game.calculateScore();
   $("#timer").text(`${game.getSeconds}`);
   $("#wpm").text(`${player.wordsPerMinute}`);
@@ -98,6 +95,37 @@ $(document).ready(function() {
     game.setStartTime();
     game.startTimer();
     $("#start-button").hide();
+
+    // ON KEY PRESS
+    $(document).keypress(function(event) {
+      game.checkCharacter(event.which);
+      updateParagraphColor(game);
+      // displayStats(game);
+      console.log("is game over " + game.isRoundOver());
+      if (game.isRoundOver()) {
+        console.log("is game over " + game.isRoundOver());
+        game.clearTimer();
+        $("#start-button").show();
+        $("#paragraph-button").show();
+      }
+    });
+
+    // ON KEY DOWN (backspace recognition)
+    $(document).keydown(function(event) {
+      if (event.which === 8) {
+        game.checkCharacter(event.which);
+        updateParagraphColor(game);
+        // displayStats(game);
+        console.log("is game over " + game.isRoundOver());
+        if (game.isRoundOver()) {
+          console.log("is game over " + game.isRoundOver());
+          displayStats(game);
+          game.clearTimer();
+          $("#start-button").show();
+          $("#paragraph-button").show();
+        }
+      }
+    });
   });
 
   // ON CLICK OF CHANGE PARAGRAPH BUTTON
@@ -107,30 +135,5 @@ $(document).ready(function() {
     game.clearTimer();
     $("#start-button").show();
     $(".stats").empty();
-  });
-
-  // ON KEY PRESS
-  $(document).keypress(function(event) {
-    game.checkCharacter(event.which);
-    updateParagraphColor(game);
-    displayStats(game);
-    if (game.isRoundOver()) {
-      $("#start-button").show();
-      $("#paragraph-button").show();
-    }
-  });
-
-  // ON KEY DOWN (backspace recognition)
-  $(document).keydown(function(event) {
-    if (event.which === 8) {
-      game.checkCharacter(event.which);
-      updateParagraphColor(game);
-      displayStats(game);
-      if (game.isRoundOver()) {
-        displayStats(game);
-        $("#start-button").show();
-        $("#paragraph-button").show();
-      }
-    }
   });
 });
