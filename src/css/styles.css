@@ -41,10 +41,12 @@
   text-align: justify;
   overflow: hidden;
   white-space: nowrap;
+  letter-spacing: 1px;
 }
 
 #paragraph {
   border: 1px solid green;
+  display: inline-block;
 }
 
 #paragraph-button {

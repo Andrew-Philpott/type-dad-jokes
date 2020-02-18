@@ -8,16 +8,28 @@ export class Player {
   getName() {
     return this.name;
   }
-  
+
   setWordsPerMinute(wpm) {
     this.wordsPerMinute = wpm;
+  }
+
+  getWordsPerMinute() {
+    return this.wordsPerMinute;
   }
 
   setCharactersPerMinute(cpm) {
     this.charsPerMinute = cpm;
   }
 
+  getCharactersPerMinute() {
+    return this.getCharactersPerMinute;
+  }
+
   setErrors(errors) {
     this.errors = errors;
+  }
+
+  getErrors() {
+    return this.errors;
   }
 }

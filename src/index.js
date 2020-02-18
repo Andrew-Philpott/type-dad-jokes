@@ -54,15 +54,20 @@ function displayParagraph(game) {
 
 function updateParagraph(game) {
   // Change color of text based on correctness and shift left
-  let position = $("#paragraph").offset().left;
-  let newPosition = position - 10;
-  $("#paragraph").offset({ left: newPosition });
+  if (game.getCharacterIndex() < game.paragraph.length) {
+    let position = $("#paragraph").offset().left;
+    let width = $("#paragraph").width();
+    console.log(
+      "difference " + Math.floor(width / game.getCharacters().length)
+    );
+    let newPosition =
+      position - Math.floor(width / game.getCharacters().length);
+    $("#paragraph").offset({ left: newPosition });
+  }
 
   let index = game.getCharacterIndex() - 1;
   $(`#${index}`).removeClass();
   $(`#${index + 1}`).addClass("next");
-  console.log(game.inputtedCharacters);
-  console.log("current index " + index);
   if (game.inputtedCharacters[index]) {
     $(`#${index}`).addClass("correct");
   } else {
@@ -71,11 +76,17 @@ function updateParagraph(game) {
 }
 
 function displayStats(game) {
-  let player = game.calculateScore();
-  $("#timer").text(`${game.getSeconds}`);
-  $("#wpm").text(`${player.wordsPerMinute}`);
-  $("#cpm").text(`${player.charactersPerMinute}`);
-  $("#errors").text(`${player.errors}`);
+  game.calculateScore();
+  $("#timer").text(`${game.getGameTime()}`);
+  // $("#wpm").text(`${game.player.getWordsPerMinute()}`);
+  // $("#cpm").text(`${game.player.getCharactersPerMinute()}`);
+  // $("#errors").text(`${game.player.getErrors()}`);
+}
+
+function updateEveryHalfSecond(game) {
+  setInterval(() => {
+    displayStats(game);
+  }, 500);
 }
 
 $(document).ready(function() {
@@ -94,6 +105,7 @@ $(document).ready(function() {
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();
+    updateEveryHalfSecond(game);
   });
 
   // ON CLICK ON START BUTTON
@@ -109,7 +121,7 @@ $(document).ready(function() {
     $(document).keypress(function(event) {
       game.checkCharacter(event.which);
       updateParagraph(game);
-      // displayStats(game);
+      displayStats(game);
       if (game.isRoundOver()) {
         game.clearTimer();
         $("#start-button").show();
@@ -122,7 +134,7 @@ $(document).ready(function() {
       if (event.which === 8) {
         game.checkCharacter(event.which);
         updateParagraph(game);
-        // displayStats(game);
+        displayStats(game);
         if (game.isRoundOver()) {
           displayStats(game);
           game.clearTimer();
