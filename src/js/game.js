@@ -126,9 +126,7 @@ export class Game {
   // }
   // checkWord() {
   checkCharacter(pushedKey) {
-    if (this.charactersIndex === this.characters.length - 1) {
-      console.log("End of game");
-    } else {
+    if (this.charactersIndex < this.characters.length) {
       let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
       if (pushedKey === 32 && charCodeAtIndex === 32) {
         this.checkWord();
