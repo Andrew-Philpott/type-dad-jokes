@@ -24,6 +24,7 @@ function callAPI(game) {
     .then(function(paragraph) {
       let formattedParagraph = formatParagraph(paragraph);
       game.setText(formattedParagraph);
+      console.log(game.paragraph);
       displayParagraph(game);
     });
 }
@@ -53,9 +54,9 @@ function displayParagraph(game) {
 
 function updateParagraphColor(game) {
   let index = game.getCharacterIndex();
-  if (index < game.doesCharacterMatch.length) {
+  if (index < game.inputtedCharacters.length) {
     $("#id").removeClass();
-    if (game.doesCharacterMatch[index]) {
+    if (game.inputtedCharacters[index]) {
       $(`#${index}`).addClass("correct");
     } else {
       $(`#${index}`).addClass("error");
@@ -85,7 +86,7 @@ $(document).ready(function() {
     game.addPlayer(player1);
     $("player-name").show();
     $("#player-name").text(name1);
-    
+
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();

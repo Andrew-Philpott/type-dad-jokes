@@ -10,7 +10,6 @@ export class Game {
     this.inputtedCharacters = [];
     this.paragraph = "";
     this.errors = 0;
-    this.wordsCorrect = 0;
   }
   getErrors() {
     return this.errors;
@@ -52,7 +51,6 @@ export class Game {
     this.charactersIndex--;
   }
   getStartTime() {
-    console.log("getStartTime",this.startTime)
     return this.startTime;
   }
   setStartTime() {
@@ -61,14 +59,10 @@ export class Game {
   setGameTime(time) {
     this.gameTime = time;
   }
-  getParagraph() {
-    return this.paragraph;
-  }
   setParagraph(paragraph) {
     this.paragraph = paragraph;
   }
   setText(paragraph) {
-    this.setParagraph("");
     this.setInputtedCharacters("");
     this.setCharacters("");
     this.setWords("");
@@ -82,8 +76,11 @@ export class Game {
   setInputtedCharacters(characters) {
     return (this.inputtedCharacters = characters);
   }
-  addMatchBool(match) {
-    this.getInputtedCharacters().push(match);
+  addCharacter(char) {
+    this.getInputtedCharacters.push(char);
+  }
+  removeCharacter() {
+    this.getInputtedCharacters.pop();
   }
 
   // setWordCompletionTime(word) {
@@ -127,6 +124,7 @@ export class Game {
   //     this.round = true;
   //   }
   // }
+  // checkWord() {
 
   checkCharacter(pushedKey) {
     if(this.characters[this.charactersIndex] !== pushedKey) {
