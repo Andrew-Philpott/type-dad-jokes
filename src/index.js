@@ -75,9 +75,9 @@ function updateParagraph(game) {
 function displayStats(game) {
   game.calculateScore();
   $("#timer").text(`${game.getGameTime()}`);
-  // $("#wpm").text(`${game.player.getWordsPerMinute()}`);
-  // $("#cpm").text(`${game.player.getCharactersPerMinute()}`);
-  // $("#errors").text(`${game.player.getErrors()}`);
+  $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
+  $("#cpm").text(`${game.currentPlayer.getCharactersPerMinute()}`);
+  $("#errors").text(`${game.currentPlayer.getErrors()}`);
 }
 
 function updateEveryHalfSecond(game) {
