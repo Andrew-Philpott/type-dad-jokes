@@ -1,6 +1,6 @@
 import { Game } from './../src/js/game';
 
-describe("Game",() => {
+describe("Game", () => {
     let newGame;
 
     beforeEach(() => {
@@ -8,11 +8,10 @@ describe("Game",() => {
     })
 
     test("Should return base constructor values", () => {
-        expect(newGame.seconds).toEqual(0)
         expect(newGame.characters).toEqual([])
         expect(newGame.words).toEqual([])
         expect(newGame.startTime).toEqual()
-        expect(newGame.gameTime).toEqual()
+        expect(newGame.gameTime).toEqual(0)
         expect(newGame.timer).toEqual()
         expect(newGame.players).toEqual([])
         expect(newGame.charactersIndex).toEqual(0)
@@ -27,12 +26,6 @@ describe("Game",() => {
         expect(newGame.getErrors()).toEqual(0);
         newGame.incrementErrors();
         expect(newGame.errors).toEqual(1);
-    })
-
-    test("Should return 0 when we call getSeconds and return 5 when we call the setSeconds method with 5", () => {
-        expect(newGame.getSeconds()).toEqual(0);
-        newGame.setSeconds(5);
-        expect(newGame.seconds).toEqual(5);
     })
 
     test("Should return [] when we call getCharacters and setCharacters should return an array with hello splitted", () => {
