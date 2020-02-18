@@ -46,6 +46,9 @@ export class Game {
   getCharacterIndex() {
     return this.charactersIndex;
   }
+  resetCharacterIndex() {
+    this.charactersIndex = 0;
+  }
   incrementCharacterIndex() {
     this.charactersIndex++;
   }
@@ -89,7 +92,6 @@ export class Game {
   startTimer() {
     this.timer = setInterval(() => {
       this.updateGameTime();
-      this.calculateScoreForPlayer();
     }, 1000);
   }
   clearTimer() {
@@ -129,20 +131,25 @@ export class Game {
   // }
   // checkWord() {
   checkCharacter(pushedKey) {
-    if (this.charactersIndex < this.characters.length) {
-      let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
-      if (pushedKey === 32 && charCodeAtIndex === 32) {
-        this.checkWord();
-        this.addMatchBool(true);
-      } else if (pushedKey === 32 && charCodeAtIndex !== 32) {
-        this.addMatchBool(false);
-      } else if (charCodeAtIndex !== pushedKey) {
-        this.incrementErrors();
-        this.addMatchBool(false);
-      } else if (charCodeAtIndex === pushedKey) {
-        this.addMatchBool(true);
+    if(pushedKey === 8 && this.charactersIndex > 0) {
+      this.decrementCharacterIndex();
+      this.inputtedCharacters.pop();
+    } else {
+      if (this.charactersIndex < this.characters.length) {
+        let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
+        if (pushedKey === 32 && charCodeAtIndex === 32) {
+          this.checkWord();
+          this.addMatchBool(true);
+        } else if (pushedKey === 32 && charCodeAtIndex !== 32) {
+          this.addMatchBool(false);
+        } else if (charCodeAtIndex !== pushedKey) {
+          this.incrementErrors();
+          this.addMatchBool(false);
+        } else if (charCodeAtIndex === pushedKey) {
+          this.addMatchBool(true);
+        }
+        this.incrementCharacterIndex();
       }
-      this.incrementCharacterIndex();
     }
   }
 
