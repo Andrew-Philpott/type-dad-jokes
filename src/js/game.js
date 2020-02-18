@@ -1,3 +1,5 @@
+import { Player } from './player.js'
+
 export class Game {
   constructor() {
     this.seconds = 0;
@@ -87,6 +89,7 @@ export class Game {
   startTimer() {
     this.timer = setInterval(() => {
       this.updateGameTime();
+      this.calculateScoreForPlayer();
     }, 1000);
   }
   clearTimer() {
@@ -146,12 +149,33 @@ export class Game {
     }
   }
 
-  calculateScore() {
-    // let minutes = this.gameTime / 60;
-    // let seconds = this.gameTime % 60;
-    let wordsCorrect = this.wordsCorrect;
-    let wordsPerSecond = parseFloat(wordsCorrect/this.getGameTime());
-    console.log(wordsPerSecond);
+  calculateScore(player) {
+    if(player instanceof Player) {
+      player.setWordsPerMinute(this.calculateWordsPerMintue());
+      player.setCharactersPerMinute(this.calculateCharactersPerMintue());
+      player.setErrors(this.getErrors());
+      return player;
+    }
+    return false;
+  }
+  calculateWordsPerMintue() {
+    let wordsPerMinute = parseFloat((this.wordsCorrect/this.gameTime)*60);
+    return wordsPerMinute;
+  }
+  calculateCharactersPerMintue() {
+    let numberOfCorrectMatches = 0;
+    let charactersPerMinute = 0;
+    for(let i = 0; i < this.inputtedCharacters.length; i++) {
+      if(this.inputtedCharacters[i]) {
+        numberOfCorrectMatches = numberOfCorrectMatches + 1;
+      }
+    }
+    if(numberOfCorrectMatches === 0) {
+      return 0;
+    } else {
+      charactersPerMinute = parseFloat((numberOfCorrectMatches/this.gameTime)*60);
+    }
+    return charactersPerMinute;
   }
   isRoundOver() {
     return false;
