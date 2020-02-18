@@ -5,9 +5,17 @@
 _This application is for checking your typing speed._
 
 ## Specs
-* _Spec: ._
+* _Spec: The application should not show the start game screen if a name isn't entered in the "Enter your name box" and submit is clicked._
+  * Input: "" and click submit 
+  * Output: "Please fill out this field"
+
+* _Spec: The application should show the start game screen upon entering a name into "Enter your name box"._
+  * Input: "Andrew" and click submit 
+  * Output: Start game screen is displayed with "Andrew" at the top, "Start Race" and "Change Text" buttons, and a string of words in the middle of the screen.
+
+* _Spec: _
   * Input: 
-  * Output: 
+  * Output:
 
 ## Setup/Installation Requirements
 _Clone this repository._
