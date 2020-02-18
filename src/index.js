@@ -85,11 +85,10 @@ $(document).ready(function() {
     game.addPlayer(player1);
     $("player-name").show();
     $("#player-name").text(name1);
-    $("#stats-box").show();
+    
     $("#name-form").hide();
+    $("#page-two").show();
     $("#paragraph-box").show();
-    $("start-button").show();
-    $("#paragraph-button").show();
   });
 
   // ON CLICK ON START BUTTON

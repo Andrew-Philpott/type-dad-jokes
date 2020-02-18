@@ -51,6 +51,7 @@ export class Game {
     this.charactersIndex--;
   }
   getStartTime() {
+    console.log("getStartTime",this.startTime)
     return this.startTime;
   }
   setStartTime() {
