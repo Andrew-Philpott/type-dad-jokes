@@ -131,6 +131,7 @@ export class Game {
     console.log(charCodeAtIndex);
     if (pushedKey === 32) {
       this.checkWord();
+      this.addMatchBool(true);
     } else if (charCodeAtIndex !== pushedKey) {
       this.incrementErrors();
       this.addMatchBool(false);

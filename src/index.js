@@ -48,19 +48,20 @@ function displayParagraph(game) {
     let spanChar = `<span id=${i} class="neutral">${paragraph[i]}</span>`;
     spanParagraph += spanChar;
   }
+  $("#paragraph-box").empty();
   $("#paragraph-box").append(spanParagraph);
 }
 
 function updateParagraphColor(game) {
   // Change color of text based on correctness
-  let index = game.getCharacterIndex();
-  if (index < game.inputtedCharacters.length) {
-    $("#id").removeClass();
-    if (game.inputtedCharacters[index]) {
-      $(`#${index}`).addClass("correct");
-    } else {
-      $(`#${index}`).addClass("error");
-    }
+  let index = game.getCharacterIndex() - 1;
+  console.log("index " + index);
+  $(`#${index}`).removeClass();
+  console.log("current " + game.inputtedCharacters[index]);
+  if (game.inputtedCharacters[index]) {
+    $(`#${index}`).addClass("correct");
+  } else {
+    $(`#${index}`).addClass("error");
   }
 }
 
