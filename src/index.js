@@ -24,6 +24,7 @@ function callAPI(game) {
     .then(function(paragraph) {
       let formattedParagraph = formatParagraph(paragraph);
       game.setText(formattedParagraph);
+      console.log(game.paragraph);
       displayParagraph(game);
     });
 }
@@ -85,7 +86,7 @@ $(document).ready(function() {
     game.addPlayer(player1);
     $("player-name").show();
     $("#player-name").text(name1);
-    
+
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();

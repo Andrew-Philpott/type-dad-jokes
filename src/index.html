@@ -7,21 +7,21 @@
   </head>
   <body>
     <div class="container">
-    <form id="name-form">
-      <label for="name-input">Enter your name:</label>
-      <input type="text" id="name-input" />
-      <button type="submit" id="name-button">submit</button>
-    </form>
+      <form id="name-form">
+        <label for="name-input">Enter your name:</label>
+        <input type="text" id="name-input" required />
+        <button type="submit" id="name-button">submit</button>
+      </form>
 
       <div id="page-two">
         <div id="player-name">Name goes here</div>
         <div id="stats-box" class="row">
           <div class="col-md-3">
-            <h5>Timer: </h5>
+            <h5>Timer:</h5>
             <p id="timer" class="stats"></p>
           </div>
           <div class="col-md-3">
-            <h5>Words/Min: </h5>  
+            <h5>Words/Min:</h5>
             <p id="wpm" class="stats"></p>
           </div>
           <div class="col-md-3">
@@ -29,9 +29,9 @@
             <p id="cpm" class="stats"></p>
           </div>
           <div class="col-md-3">
-              <h5>Errors:</h5>
-              <p id="errors" class="stats"></p>
-            </div>
+            <h5>Errors:</h5>
+            <p id="errors" class="stats"></p>
+          </div>
         </div>
         <div id="paragraph-box">Paragraph to type goes here</div>
         <button id="paragraph-button">change</button>
