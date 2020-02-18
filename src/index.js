@@ -56,6 +56,7 @@ function updateParagraphColor(game) {
   // Change color of text based on correctness
   let index = game.getCharacterIndex() - 1;
   $(`#${index}`).removeClass();
+  $(`#${index + 1}`).addClass("next");
   if (game.inputtedCharacters[index]) {
     $(`#${index}`).addClass("correct");
   } else {
