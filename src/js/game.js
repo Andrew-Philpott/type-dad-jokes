@@ -16,6 +16,10 @@ export class Game {
     this.wordsCorrect = 0;
     this.currentPlayer;
   }
+
+  setCurrentPlayer(value) {
+    this.currentPlayer = this.players[value];
+  }
   getErrors() {
     return this.errors;
   }
@@ -122,10 +126,12 @@ export class Game {
   changePlayer() {
     if(this.players.length !== 1) {
       if(this.currentPlayer === this.players[0]) {
-        this.currentPlayer = this.players[1];
+        this.setCurrentPlayer(1);
       } else {
-        this.currentPlayer = this.players[0];
+        this.setCurrentPlayer(0);
       }
+    } else {
+      this.setCurrentPlayer(0);
     }
   }
 
@@ -166,8 +172,12 @@ export class Game {
     }
   }
   calculateWordsPerMintue() {
-    let wordsPerMinute = parseFloat((this.wordsCorrect / this.gameTime) * 60);
-    return wordsPerMinute;
+    if(this.wordsCorrect === 0) {
+      return 0;
+    } else {
+      let wordsPerMinute = Math.floor((this.wordsCorrect / this.gameTime) * 60);
+      return wordsPerMinute;
+    }
   }
   calculateCharactersPerMintue() {
     let numberOfCorrectMatches = 0;
@@ -180,7 +190,7 @@ export class Game {
     if (numberOfCorrectMatches === 0) {
       return 0;
     } else {
-      charactersPerMinute = parseFloat(
+      charactersPerMinute = Math.floor(
         (numberOfCorrectMatches / this.gameTime) * 60
       );
     }

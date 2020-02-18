@@ -77,9 +77,9 @@ function updateParagraph(game) {
 function displayStats(game) {
   game.calculateScore();
   $("#timer").text(`${game.getGameTime()}`);
-  // $("#wpm").text(`${game.player.getWordsPerMinute()}`);
-  // $("#cpm").text(`${game.player.getCharactersPerMinute()}`);
-  // $("#errors").text(`${game.player.getErrors()}`);
+  $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
+  $("#cpm").text(`${game.currentPlayer.getCharactersPerMinute()}`);
+  $("#errors").text(`${game.currentPlayer.getErrors()}`);
 }
 
 function updateEveryHalfSecond(game) {
@@ -91,6 +91,7 @@ function updateEveryHalfSecond(game) {
 $(document).ready(function() {
   const game = new Game();
   callAPI(game);
+  $("#page-two").hide();
 
   // ON SUBMIT OF USER NAME
   $("#name-form").submit(function(event) {
@@ -98,6 +99,7 @@ $(document).ready(function() {
     const name1 = $("#name-input").val();
     const player1 = new Player(name1);
     game.addPlayer(player1);
+    game.setCurrentPlayer(0);
     $("player-name").show();
     $("#player-name").text(name1);
 
