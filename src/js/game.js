@@ -87,7 +87,7 @@ export class Game {
   startTimer() {
     this.timer = setInterval(() => {
       this.updateGameTime();
-    },1000)
+    }, 1000);
   }
   clearTimer() {
     clearInterval(this.timer);
@@ -97,7 +97,7 @@ export class Game {
     let timeNow = Math.floor(Date.now() / 1000);
     console.log(timeNow + " time now");
     let gameTime = timeNow - this.startTime;
-   // console.log(gameTime + " Game time");
+    // console.log(gameTime + " Game time");
     this.setGameTime(gameTime);
     console.log(this.gameTime);
     // this.setMinutes(Math.floor(gameTime / 1000) / 60);
@@ -115,7 +115,7 @@ export class Game {
       i--;
     }
     let checkMatches = matches => matches.every(match => match === true);
-    if(checkMatches) {
+    if (checkMatches) {
       this.wordsCorrect = this.wordsCorrect + 1;
     }
   }
@@ -125,25 +125,25 @@ export class Game {
   //   }
   // }
   // checkWord() {
-    checkCharacter(pushedKey) {
-      let charCodeAtIndex = (this.characters[this.charactersIndex]).charCodeAt();
-      if(pushedKey === 32) {
-        this.checkWord();
-      } else if(charCodeAtIndex !== pushedKey) {
-        this.incrementErrors();
-        this.addMatchBool(false);
-      } else if(charCodeAtIndex === pushedKey) {
-        this.addMatchBool(true);
-      }
-      this.incrementCharacterIndex();
-      if(this.charactersIndex === this.characters.length-1);
-      console.log(`checked ${pushedKey}`);
+  checkCharacter(pushedKey) {
+    let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
+    if (pushedKey === 32) {
+      this.checkWord();
+    } else if (charCodeAtIndex !== pushedKey) {
+      this.incrementErrors();
+      this.addMatchBool(false);
+    } else if (charCodeAtIndex === pushedKey) {
+      this.addMatchBool(true);
     }
+    this.incrementCharacterIndex();
+    if (this.charactersIndex === this.characters.length - 1);
+    console.log(`checked ${pushedKey}`);
+  }
 
   isRoundOver() {
     return false;
   }
-  
+
   addPlayer(playerObj) {
     this.players.push(playerObj);
   }

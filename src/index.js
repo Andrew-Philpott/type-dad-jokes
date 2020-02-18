@@ -104,6 +104,7 @@ $(document).ready(function() {
   $("#paragraph-button").click(function(event) {
     event.preventDefault();
     callAPI(game);
+    game.clearTimer();
     $("#start-button").show();
     $(".stats").empty();
   });
