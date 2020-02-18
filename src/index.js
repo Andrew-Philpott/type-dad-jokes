@@ -89,6 +89,7 @@ function updateEveryHalfSecond(game) {
 $(document).ready(function() {
   const game = new Game();
   callAPI(game);
+  $("#page-two").hide();
 
   // ON SUBMIT OF USER NAME
   $("#name-form").submit(function(event) {
@@ -118,7 +119,6 @@ $(document).ready(function() {
     $(document).keypress(function(event) {
       game.checkCharacter(event.which);
       updateParagraph(game);
-      displayStats(game);
       if (game.isRoundOver()) {
         game.clearTimer();
         $("#start-button").show();
@@ -131,9 +131,7 @@ $(document).ready(function() {
       if (event.which === 8) {
         game.checkCharacter(event.which);
         updateParagraph(game);
-        displayStats(game);
         if (game.isRoundOver()) {
-          displayStats(game);
           game.clearTimer();
           $("#start-button").show();
           $("#paragraph-button").show();
