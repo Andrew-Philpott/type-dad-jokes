@@ -24,7 +24,7 @@ function callAPI(game) {
     .then(function(paragraph) {
       let formattedParagraph = formatParagraph(paragraph);
       game.setText(formattedParagraph);
-      displayParagraph(formattedParagraph);
+      displayParagraph(game);
     });
 }
 
@@ -35,13 +35,32 @@ function formatParagraph(paragraph) {
   } else {
     shortWordsArray = shortWordsArray.slice(0);
   }
+  //console.log(shortWordsArray);
   let wordsString = shortWordsArray.join(" ");
   return wordsString;
 }
 
-function displayParagraph(formattedParagraph) {
+function displayParagraph(game) {
   // Display paragraph text to screen
-  $("#paragraph-box").text(formattedParagraph);
+  let paragraph = game.paragraph;
+  let spanParagraph = "";
+  for (let i = 0; i < paragraph.length; i++) {
+    let spanChar = `<span id=${i} class="neutral">${paragraph[i]}</span>`;
+    spanParagraph += spanChar;
+  }
+  $("#paragraph-box").text(spanParagraph);
+}
+
+function updateParagraphColor(game) {
+  let index = game.getCharacterIndex();
+  if (index < game.doesCharacterMatch.length) {
+    $("#id").removeClass();
+    if (game.doesCharacterMatch[index]) {
+      $(`#${index}`).addClass("correct");
+    } else {
+      $(`#${index}`).addClass("error");
+    }
+  }
 }
 
 function displayStats(game) {
@@ -94,6 +113,7 @@ $(document).ready(function() {
   // ON KEY PRESS
   $(document).keypress(function(event) {
     game.checkCharacter(event.which);
+    updateParagraphColor(game);
     if (game.isRoundOver()) {
       clearTimeout(timer);
       displayStats(game);

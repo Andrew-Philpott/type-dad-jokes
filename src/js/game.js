@@ -8,7 +8,7 @@ export class Game {
     this.players = [];
     this.charactersIndex = 0;
     this.inputtedCharacters = [];
-    this.charactersMatch = [];
+    this.doesCharacterMatch = [];
     this.errors = 0;
   }
   getErrors() {
@@ -54,7 +54,7 @@ export class Game {
     return this.startTime;
   }
   setStartTime() {
-    this.startTime = Math.floor(Date.now()/1000);
+    this.startTime = Math.floor(Date.now() / 1000);
   }
   setGameTime(time) {
     this.gameTime = time;
@@ -90,8 +90,8 @@ export class Game {
     this.startTimer();
   }
   startTimer() {
-    console.log(this.startTime + " start time")
-    let timeNow = Math.floor(Date.now()/1000);
+    console.log(this.startTime + " start time");
+    let timeNow = Math.floor(Date.now() / 1000);
     console.log(timeNow + " time now");
     let gameTime = timeNow - this.startTime;
     console.log(gameTime + " Game time");
