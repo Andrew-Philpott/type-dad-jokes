@@ -8,11 +8,7 @@ export class Game {
     this.players = [];
     this.charactersIndex = 0;
     this.inputtedCharacters = [];
-<<<<<<< HEAD
     this.paragraph = "";
-=======
-    this.doesCharacterMatch = [];
->>>>>>> 2c9b9209f56944251092813042f0acfd95b273ed
     this.errors = 0;
     this.wordsCorrect = 0;
   }
