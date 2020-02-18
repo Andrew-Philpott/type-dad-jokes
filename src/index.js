@@ -22,22 +22,20 @@ function callAPI(game) {
       return paragraph;
     })
     .then(function(paragraph) {
-      console.log("paragraph " + paragraph);
       let formattedParagraph = formatParagraph(paragraph);
       game.setText(formattedParagraph);
-      console.log("game paragraph stored " + game.paragraph);
       displayParagraph(game);
     });
 }
 
 function formatParagraph(paragraph) {
+  // Shorten paragrph to 100 words
   let shortWordsArray = paragraph.split(" ");
   if (shortWordsArray.length > 100) {
     shortWordsArray = shortWordsArray.slice(0, 101);
   } else {
     shortWordsArray = shortWordsArray.slice(0);
   }
-  //console.log(shortWordsArray);
   let wordsString = shortWordsArray.join(" ");
   return wordsString;
 }
@@ -54,6 +52,7 @@ function displayParagraph(game) {
 }
 
 function updateParagraphColor(game) {
+  // Change color of text based on correctness
   let index = game.getCharacterIndex();
   if (index < game.inputtedCharacters.length) {
     $("#id").removeClass();

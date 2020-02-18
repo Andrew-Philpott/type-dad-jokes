@@ -63,7 +63,7 @@ export class Game {
     this.paragraph = paragraph;
   }
   setText(paragraph) {
-    this.setInputtedCharacters("");
+    this.setInputtedCharacters([]);
     this.setCharacters("");
     this.setWords("");
     this.setCharacters(paragraph);
@@ -76,8 +76,8 @@ export class Game {
   setInputtedCharacters(characters) {
     return (this.inputtedCharacters = characters);
   }
-  addCharacter(char) {
-    this.getInputtedCharacters.push(char);
+  addMatchBool(char) {
+    this.inputtedCharacters.push(char);
   }
   startGame() {
     this.round = false;
@@ -126,7 +126,9 @@ export class Game {
   // }
   // checkWord() {
   checkCharacter(pushedKey) {
+    console.log(pushedKey);
     let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
+    console.log(charCodeAtIndex);
     if (pushedKey === 32) {
       this.checkWord();
     } else if (charCodeAtIndex !== pushedKey) {
