@@ -41,21 +41,26 @@
 
 #paragraph-box {
   border: 5px solid blue;
-  min-height: 500px;
+  min-height: 300px;
   width: 100%;
-  display: none;
   line-height: 2.5;
   font-size: 1.4em;
-  padding: 30px 75px;
+  padding: 30px 70px;
   text-align: justify;
-  overflow: hidden;
   white-space: nowrap;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #paragraph {
-  /* border: 1px solid green; */
   display: inline-block;
+}
+
+#paragraph-padding {
+  width: 100%;
+  overflow: hidden;
 }
 
 #paragraph-button {
