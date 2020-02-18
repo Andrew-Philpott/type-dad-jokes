@@ -48,34 +48,65 @@ function displayParagraph(game) {
     let spanChar = `<span id=${i} class="neutral">${paragraph[i]}</span>`;
     spanParagraph += spanChar;
   }
-  $("#paragraph-box").append(spanParagraph);
+  $("#paragraph-box").empty();
+  $("#paragraph-box").append(
+    `<div id="paragraph-padding"><div id="paragraph">${spanParagraph}</div></div>`
+  );
 }
 
-function updateParagraphColor(game) {
-  // Change color of text based on correctness
+function updateParagraph(game) {
+  // Change color of text based on correctness and shift left
+  let index = game.getCharacterIndex() - 1;
+
+  if (game.getCharacterIndex() < game.paragraph.length) {
+    let position = $("#paragraph").offset().left;
+    let letterWidth = $(`#${index}`).width();
+    let newPosition = position - letterWidth;
+    $("#paragraph").offset({ left: newPosition });
+  }
+  $(`#${index}`).removeClass();
+  $(`#${index + 1}`).addClass("next");
+  if (game.inputtedCharacters[index]) {
+    $(`#${index}`).addClass("correct");
+  } else {
+    $(`#${index}`).addClass("error");
+  }
+}
+
+function backSpace(game, prevIndex) {
   let index = game.getCharacterIndex();
-  if (index < game.inputtedCharacters.length) {
-    $("#id").removeClass();
-    if (game.inputtedCharacters[index]) {
-      $(`#${index}`).addClass("correct");
-    } else {
-      $(`#${index}`).addClass("error");
-    }
+
+  if (index + 1 < game.getCharacters().length && index !== prevIndex) {
+    let position = $("#paragraph").offset().left;
+    let letterWidth = $(`#${index}`).width();
+    let newPosition = position + letterWidth;
+    $("#paragraph").offset({ left: newPosition });
+
+    $(`#${index + 1}`).removeClass();
+    $(`#${index + 1}`).addClass("neutral");
+    $(`#${index}`).removeClass();
+    $(`#${index}`).addClass("next");
   }
 }
 
 function displayStats(game) {
-  console.log(game);
-  let player = game.calculateScore(); // THIS FUNCTION HASN'T BEEN WRITTEN YET, HENCE WHY SCORES DON'T SHOW
-  $("#timer").text(`${game.getSeconds}`);
-  $("#wpm").text(`${player.wordsPerMinute}`);
-  $("#cpm").text(`${player.charactersPerMinute}`);
-  $("#errors").text(`${player.errors}`);
+  game.calculateScore();
+  $("#timer").text(`${game.getGameTime()}`);
+  $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
+  $("#cpm").text(`${game.currentPlayer.getCharactersPerMinute()}`);
+  $("#errors").text(`${game.currentPlayer.getErrors()}`);
+}
+
+function updateEveryHalfSecond(game) {
+  setInterval(() => {
+    displayStats(game);
+  }, 500);
 }
 
 $(document).ready(function() {
   const game = new Game();
   callAPI(game);
+  $("#page-two").hide();
 
   // ON SUBMIT OF USER NAME
   $("#name-form").submit(function(event) {
@@ -89,14 +120,47 @@ $(document).ready(function() {
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();
+    updateEveryHalfSecond(game);
   });
 
   // ON CLICK ON START BUTTON
   $("#start-button").click(function(event) {
     event.preventDefault();
-    game.setStartTime();
-    game.startTimer();
+    $("#traffic-light-bg").fadeIn();
+    setTimeout(() => {
+      $("#traffic-light-bg").hide();
+      game.setStartTime();
+      game.startTimer();
+      game.setText(game.paragraph);
+      displayParagraph(game);
+    }, 3000);
     $("#start-button").hide();
+
+    // ON KEY PRESS
+    $(document).keypress(function(event) {
+      game.checkCharacter(event.which);
+      updateParagraph(game);
+      if (game.isRoundOver()) {
+        game.clearTimer();
+        $("#start-button").show();
+        $("#paragraph-button").show();
+      }
+    });
+
+    // ON KEY DOWN (backspace recognition)
+    $(document).keydown(function(event) {
+      if (event.which === 8) {
+        let prevIndex = game.getCharacterIndex();
+        game.checkCharacter(event.which);
+        backSpace(game, prevIndex);
+        displayStats(game);
+        if (game.isRoundOver()) {
+          game.clearTimer();
+          $("#start-button").show();
+          $("#paragraph-button").show();
+        }
+      }
+    });
   });
 
   // ON CLICK OF CHANGE PARAGRAPH BUTTON
@@ -106,16 +170,5 @@ $(document).ready(function() {
     game.clearTimer();
     $("#start-button").show();
     $(".stats").empty();
-  });
-
-  // ON KEY PRESS
-  $(document).keypress(function(event) {
-    game.checkCharacter(event.which);
-    updateParagraphColor(game);
-    if (game.isRoundOver()) {
-      displayStats(game);
-      $("#start-button").show();
-      $("#paragraph-button").show();
-    }
   });
 });

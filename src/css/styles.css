@@ -10,27 +10,60 @@
 }
 
 #page-two {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #player-name {
   border: 5px solid red;
   height: 100px;
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
   width: 100%;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  border: 3px solid yellow;
 }
 
 #stats-box {
   border: 5px solid green;
   height: 200px;
   width: 100%;
-  margin-left: 0px;
+  padding: 30px 0;
 }
 
 #paragraph-box {
   border: 5px solid blue;
-  height: 500px;
+  min-height: 300px;
   width: 100%;
-  display: none;
+  line-height: 2.5;
+  font-size: 1.4em;
+  padding: 30px 70px;
+  text-align: justify;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#paragraph {
+  display: inline-block;
+  width: 80%;
+}
+
+#paragraph-padding {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
 }
 
 #paragraph-button {
@@ -43,11 +76,189 @@
   font-size: 28px;
 }
 
-.correct {
-  font-weight: 800;
+span.neutral {
+  font-weight: 700;
 }
 
-.error {
-  font-weight: 800;
-  color: red;
+span.correct {
+  font-weight: 700;
+  opacity: 0.5;
 }
+
+span.error {
+  font-weight: 700;
+  color: #c40d00;
+}
+
+span.next {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Traffic light css */
+#traffic-light-bg {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: absolute;
+  display: none;
+  z-index: 5;
+}
+
+#traffic-light {
+  position: absolute;
+  width: 170px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -85px;
+  top: 50%;
+  left: 50%;
+  background-color: #e3e3e3;
+}
+
+.red {
+  background: red;
+  background-size: 5px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 35px;
+  animation: 3s red;
+  opacity: 0.1;
+}
+
+.yellow {
+  background: yellow;
+  background-size: 5px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 145px;
+  left: 35px;
+  animation: 3s yellow;
+  opacity: 0.1;
+}
+
+.green {
+  background: green;
+  background-size: 5px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 270px;
+  left: 35px;
+  animation: 3s green;
+  opacity: 0.1;
+}
+
+@keyframes red {
+  0% {
+    opacity: 1;
+  }
+  29% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes yellow {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  31% {
+    opacity: 1;
+  }
+  59% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes green {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  61% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+p {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+#pred {
+  color: red;
+  position: absolute;
+  animation: red 3s;
+  left: 250px;
+  top: 10px;
+  opacity: 0;
+}
+
+#pyellow {
+  color: yellow;
+  position: absolute;
+  animation: yellow 3s;
+  left: 250px;
+  top: 135px;
+  opacity: 0;
+}
+
+#pgreen {
+  color: green;
+  position: absolute;
+  animation: green 3s;
+  left: 250px;
+  top: 260px;
+  opacity: 0;
+}
+/* Traffic light end css */
