@@ -10,24 +10,33 @@
 }
 
 #page-two {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #player-name {
   border: 5px solid red;
   height: 100px;
-  width: 100%;
   font-size: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 30px 0;
+  width: 100%;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  border: 3px solid yellow;
 }
 
 #stats-box {
   border: 5px solid green;
   height: 200px;
   width: 100%;
-  margin-left: 0px;
 }
 
 #paragraph-box {
@@ -37,7 +46,7 @@
   display: none;
   line-height: 2.5;
   font-size: 1.4em;
-  padding: 30px 50px;
+  padding: 30px 75px;
   text-align: justify;
   overflow: hidden;
   white-space: nowrap;
@@ -45,7 +54,7 @@
 }
 
 #paragraph {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: inline-block;
 }
 
