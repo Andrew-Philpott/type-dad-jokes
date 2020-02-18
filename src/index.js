@@ -49,14 +49,20 @@ function displayParagraph(game) {
     spanParagraph += spanChar;
   }
   $("#paragraph-box").empty();
-  $("#paragraph-box").append(spanParagraph);
+  $("#paragraph-box").append(`<div id="paragraph"> ${spanParagraph} </div>`);
 }
 
-function updateParagraphColor(game) {
-  // Change color of text based on correctness
+function updateParagraph(game) {
+  // Change color of text based on correctness and shift left
+  let position = $("#paragraph").offset().left;
+  let newPosition = position - 10;
+  $("#paragraph").offset({ left: newPosition });
+
   let index = game.getCharacterIndex() - 1;
   $(`#${index}`).removeClass();
   $(`#${index + 1}`).addClass("next");
+  console.log(game.inputtedCharacters);
+  console.log("current index " + index);
   if (game.inputtedCharacters[index]) {
     $(`#${index}`).addClass("correct");
   } else {
@@ -95,12 +101,14 @@ $(document).ready(function() {
     event.preventDefault();
     game.setStartTime();
     game.startTimer();
+    game.setText(game.paragraph);
+    displayParagraph(game);
     $("#start-button").hide();
 
     // ON KEY PRESS
     $(document).keypress(function(event) {
       game.checkCharacter(event.which);
-      updateParagraphColor(game);
+      updateParagraph(game);
       // displayStats(game);
       if (game.isRoundOver()) {
         game.clearTimer();
@@ -113,7 +121,7 @@ $(document).ready(function() {
     $(document).keydown(function(event) {
       if (event.which === 8) {
         game.checkCharacter(event.which);
-        updateParagraphColor(game);
+        updateParagraph(game);
         // displayStats(game);
         if (game.isRoundOver()) {
           displayStats(game);

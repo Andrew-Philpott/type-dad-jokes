@@ -69,6 +69,7 @@ export class Game {
     this.setCharacters(paragraph);
     this.setWords(paragraph);
     this.setParagraph(paragraph);
+    this.charactersIndex = 0;
   }
   getInputtedCharacters() {
     return this.inputtedCharacters;

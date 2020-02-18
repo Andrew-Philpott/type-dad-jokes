@@ -39,6 +39,12 @@
   font-size: 1.4em;
   padding: 30px 50px;
   text-align: justify;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#paragraph {
+  border: 1px solid green;
 }
 
 #paragraph-button {
