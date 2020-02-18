@@ -144,6 +144,13 @@ export class Game {
     }
   }
 
+  calculateScore() {
+    // let minutes = this.gameTime / 60;
+    // let seconds = this.gameTime % 60;
+    let wordsCorrect = this.wordsCorrect;
+    let wordsPerSecond = parseFloat(wordsCorrect/this.getGameTime());
+    console.log(wordsPerSecond);
+  }
   isRoundOver() {
     return false;
   }
