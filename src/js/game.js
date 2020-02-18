@@ -8,8 +8,9 @@ export class Game {
     this.players = [];
     this.charactersIndex = 0;
     this.inputtedCharacters = [];
-    this.charactersMatch = [];
+    this.paragraph = "";
     this.errors = 0;
+    this.wordsCorrect = 0;
   }
   getErrors() {
     return this.errors;
@@ -59,12 +60,20 @@ export class Game {
   setGameTime(time) {
     this.gameTime = time;
   }
+  getParagraph() {
+    return this.paragraph;
+  }
+  setParagraph(paragraph) {
+    this.paragraph = paragraph;
+  }
   setText(paragraph) {
+    this.setParagraph("");
     this.setInputtedCharacters("");
     this.setCharacters("");
     this.setWords("");
     this.setCharacters(paragraph);
     this.setWords(paragraph);
+    this.setParagraph(paragraph);
   }
   getInputtedCharacters() {
     return this.inputtedCharacters;
@@ -72,11 +81,8 @@ export class Game {
   setInputtedCharacters(characters) {
     return (this.inputtedCharacters = characters);
   }
-  addCharacter(char) {
-    this.getInputtedCharacters.push(char);
-  }
-  removeCharacter() {
-    this.getInputtedCharacters.pop();
+  addMatchBool(match) {
+    this.getInputtedCharacters().push(match);
   }
 
   // setWordCompletionTime(word) {
@@ -101,24 +107,51 @@ export class Game {
     setTimeout(this.startTimer(), 500);
   }
 
+    checkWord() {
+    let reverseWord = [];
+    let i = 0;
+    while(characters[(charactersIndex + i)] !== " " && ((charactersIndex + i) < 0)) {
+      console.log(characters[(charactersIndex + i)]);
+      reverseWord.push(characters[charactersIndex]);
+      i--;
+    }
+    let word = reverseWord.reverse().join("");
+    if(word === wor) {
+      wordsCorrect = wordsCorrect + 1;
+    }
+  }
   // checkGame() {
   //   if (this.charactersIndex === charactersCount) {
   //     this.round = true;
   //   }
   // }
-  // checkWord() {
 
-  // }
-
-  // checkCharacter(pushedKey) {
-  //   if(this.characters[this.charactersIndex] !== pushedKey) {
-  //     this.incrementErrors();
-  //   } else if(this.characters[this.charactersIndex] === " ") {
-  //     this.checkWord();
+  // function checkWord() {
+  //   let reverseWord = [];
+  //   let i = 0;
+  //   while(characters[(charactersIndex + i)] !== " " && ((charactersIndex + i) >= 0)) {
+  //   console.log(characters[(charactersIndex + i)]);
+  //     reverseWord.push(characters[charactersIndex]);
+  //     i--;
   //   }
-
-  //   console.log(`checked ${character}`);
+  //   let word = reverseWord.reverse().join("");
+  //   console.log(word);
+  //   if(word === wor) {
+  //     wordsCorrect = wordsCorrect + 1;
+  //   }
   // }
+
+
+  checkCharacter(pushedKey) {
+    if(this.characters[this.charactersIndex] !== pushedKey) {
+      this.incrementErrors();
+      this.setInputtedCharacters(false);
+    } else if(this.characters[this.charactersIndex] === " ") {
+      this.checkWord();
+    }
+    incrementCharacterIndex();
+    console.log(`checked ${character}`);
+  }
   checkCharacter(character) {
     console.log(`checked ${character}`);
   }
