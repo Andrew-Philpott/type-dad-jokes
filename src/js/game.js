@@ -9,7 +9,6 @@ export class Game {
     this.charactersIndex = 0;
     this.inputtedCharacters = [];
     this.paragraph = "";
-    this.doesCharacterMatch = [];
     this.errors = 0;
   }
   getErrors() {

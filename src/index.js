@@ -54,9 +54,9 @@ function displayParagraph(game) {
 
 function updateParagraphColor(game) {
   let index = game.getCharacterIndex();
-  if (index < game.doesCharacterMatch.length) {
+  if (index < game.inputtedCharacters.length) {
     $("#id").removeClass();
-    if (game.doesCharacterMatch[index]) {
+    if (game.inputtedCharacters[index]) {
       $(`#${index}`).addClass("correct");
     } else {
       $(`#${index}`).addClass("error");
