@@ -107,10 +107,10 @@ function createPlayerNameInputs(numberOfPlayers) {
   let numberOfPlayersToNumber = parseInt(numberOfPlayers);
   let nameForm = $("#name-form");
   let nameInputsHtml = `<div id='player-names-container' class='form-group>'`;
-  if(numberOfPlayersToNumber === 1) {
+  if (numberOfPlayersToNumber === 1) {
     nameInputsHtml += `<div class='name-container'><label for='name-input-1'>Enter your name:</label><input class='player-name-input' type='text' id='name-input-1' required /></div>`;
   } else {
-    for(let i = 1; i <= numberOfPlayersToNumber; i++) {
+    for (let i = 1; i <= numberOfPlayersToNumber; i++) {
       nameInputsHtml += `<div class='name-container'><label for='name-input-${i}'>Player ${i}'s name</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
     }
   }
@@ -128,14 +128,14 @@ $(document).ready(function() {
     let playerCountInput = $(this).val();
     $("#players-select").hide();
     createPlayerNameInputs(playerCountInput);
-  })
+  });
 
   // ON SUBMIT OF USER NAME
   $("#name-form").submit(function(event) {
     event.preventDefault();
     let nameInputs = [];
     nameInputs = $(".player-name-input");
-    for(let i = 0; i < nameInputs.length; i++) {
+    for (let i = 0; i < nameInputs.length; i++) {
       let name = $(nameInputs[i]).val();
       let player = new Player(name);
       game.addPlayer(player);
