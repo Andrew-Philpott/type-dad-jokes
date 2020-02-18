@@ -110,10 +110,14 @@ $(document).ready(function() {
   // ON CLICK ON START BUTTON
   $("#start-button").click(function(event) {
     event.preventDefault();
-    game.setStartTime();
-    game.startTimer();
-    game.setText(game.paragraph);
-    displayParagraph(game);
+    $("#traffic-light").show();
+    setTimeout(() => {
+      $("#traffic-light").hide();
+      game.setStartTime();
+      game.startTimer();
+      game.setText(game.paragraph);
+      displayParagraph(game);
+    }, 3000);
     $("#start-button").hide();
 
     // ON KEY PRESS
