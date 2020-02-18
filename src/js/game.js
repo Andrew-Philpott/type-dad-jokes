@@ -105,20 +105,6 @@ export class Game {
     setTimeout(this.startTimer(), 500);
   }
 
-  checkWord() {
-    let reverseWord = [];
-    let i = 0;
-    while(characters[(charactersIndex + i)] !== " " && ((charactersIndex + i) >= 0)) {
-    console.log(characters[(charactersIndex + i)]);
-      reverseWord.push(characters[charactersIndex + i]);
-      i--;
-    }
-    let word = reverseWord.reverse().join("");
-    console.log(word);
-    if(word === wor) {
-      wordsCorrect = wordsCorrect + 1;
-    }
-  }
   // checkGame() {
   //   if (this.charactersIndex === charactersCount) {
   //     this.round = true;
@@ -127,10 +113,10 @@ export class Game {
   // checkWord() {
 
   checkCharacter(pushedKey) {
-    if(this.characters[this.charactersIndex] !== pushedKey) {
+    if (this.characters[this.charactersIndex] !== pushedKey) {
       this.incrementErrors();
       this.setInputtedCharacters(false);
-    } else if(this.characters[this.charactersIndex] === " ") {
+    } else if (this.characters[this.charactersIndex] === " ") {
       this.checkWord();
     }
     incrementCharacterIndex();
