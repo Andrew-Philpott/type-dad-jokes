@@ -67,7 +67,7 @@ function updateParagraphColor(game) {
 
 function displayStats(game) {
   console.log(game);
-  let player = game.calculateScore(); // THIS FUNCTION HASN'T BEEN WRITTEN YET, HENCE WHY SCORES DON'T SHOW
+  let player = game.calculateScore();
   $("#timer").text(`${game.getSeconds}`);
   $("#wpm").text(`${player.wordsPerMinute}`);
   $("#cpm").text(`${player.charactersPerMinute}`);
@@ -113,10 +113,24 @@ $(document).ready(function() {
   $(document).keypress(function(event) {
     game.checkCharacter(event.which);
     updateParagraphColor(game);
+    displayStats(game);
     if (game.isRoundOver()) {
-      displayStats(game);
       $("#start-button").show();
       $("#paragraph-button").show();
+    }
+  });
+
+  // ON KEY DOWN (backspace recognition)
+  $(document).keydown(function(event) {
+    if (event.which === 8) {
+      game.checkCharacter(event.which);
+      updateParagraphColor(game);
+      displayStats(game);
+      if (game.isRoundOver()) {
+        displayStats(game);
+        $("#start-button").show();
+        $("#paragraph-button").show();
+      }
     }
   });
 });

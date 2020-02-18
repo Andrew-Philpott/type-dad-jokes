@@ -51,11 +51,16 @@
   font-size: 28px;
 }
 
+.neutral {
+  font-weight: 700;
+}
+
 .correct {
-  font-weight: 800;
+  font-weight: 700;
+  opacity: 0.5;
 }
 
 .error {
-  font-weight: 800;
+  font-weight: 700;
   color: #c40d00;
 }
