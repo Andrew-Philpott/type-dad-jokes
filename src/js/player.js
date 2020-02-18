@@ -22,7 +22,7 @@ export class Player {
   }
 
   getCharactersPerMinute() {
-    return this.getCharactersPerMinute;
+    return this.charsPerMinute;
   }
 
   setErrors(errors) {

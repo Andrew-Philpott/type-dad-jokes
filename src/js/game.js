@@ -128,14 +128,19 @@ export class Game {
   }
 
   checkCharacter(pushedKey) {
-    if(pushedKey === 8)  {
-      if(this.charactersIndex > 0 && (this.characters[this.charactersIndex] !== " ")) {
+    if (pushedKey === 8) {
+      if (
+        this.charactersIndex > 0 &&
+        this.characters[this.charactersIndex] !== " "
+      ) {
         this.decrementCharacterIndex();
         this.inputtedCharacters.pop();
       }
     } else {
-      if ((this.charactersIndex < this.characters.length) && (pushedKey !== 8)) {
-        let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
+      if (this.charactersIndex < this.characters.length && pushedKey !== 8) {
+        let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(
+          0
+        );
         if (pushedKey === 32 && charCodeAtIndex === 32) {
           this.checkWord();
           this.addMatchBool(true);
