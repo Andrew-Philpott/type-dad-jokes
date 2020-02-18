@@ -1,12 +1,11 @@
-import { Player } from './player.js'
+import { Player } from "./player.js";
 
 export class Game {
   constructor() {
-    this.seconds = 0;
     this.characters = [];
     this.words = [];
     this.startTime;
-    this.gameTime;
+    this.gameTime = 0;
     this.timer;
     this.players = [];
     this.charactersIndex = 0;
@@ -21,9 +20,6 @@ export class Game {
   }
   incrementErrors() {
     this.errors++;
-  }
-  getSeconds() {
-    return this.seconds;
   }
   setSeconds(seconds) {
     this.seconds = seconds;
@@ -99,14 +95,9 @@ export class Game {
     clearInterval(this.timer);
   }
   updateGameTime() {
-    console.log(this.startTime + " start time");
     let timeNow = Math.floor(Date.now() / 1000);
-    console.log(timeNow + " time now");
     let gameTime = timeNow - this.startTime;
-    // console.log(gameTime + " Game time");
     this.setGameTime(gameTime);
-    console.log(this.gameTime);
-    // this.setMinutes(Math.floor(gameTime / 1000) / 60);
     this.setSeconds(Math.floor(gameTime / 1000) % 60);
   }
   checkWord() {
@@ -125,12 +116,7 @@ export class Game {
       this.wordsCorrect = this.wordsCorrect + 1;
     }
   }
-  // checkGame() {
-  //   if (this.charactersIndex === charactersCount) {
-  //     this.round = true;
-  //   }
-  // }
-  // checkWord() {
+
   checkCharacter(pushedKey) {
     if(pushedKey === 8)  {
       if(this.charactersIndex > 0 && (this.characters[this.charactersIndex] !== " ")) {
@@ -155,30 +141,31 @@ export class Game {
       }
     }
   }
-
   calculateScore(player) {
-    if(player instanceof Player) {
+    if (player instanceof Player) {
       player.setWordsPerMinute(this.calculateWordsPerMintue());
       player.setCharactersPerMinute(this.calculateCharactersPerMintue());
       player.setErrors(this.getErrors());
     }
   }
   calculateWordsPerMintue() {
-    let wordsPerMinute = parseFloat((this.wordsCorrect/this.gameTime)*60);
+    let wordsPerMinute = parseFloat((this.wordsCorrect / this.gameTime) * 60);
     return wordsPerMinute;
   }
   calculateCharactersPerMintue() {
     let numberOfCorrectMatches = 0;
     let charactersPerMinute = 0;
-    for(let i = 0; i < this.inputtedCharacters.length; i++) {
-      if(this.inputtedCharacters[i]) {
+    for (let i = 0; i < this.inputtedCharacters.length; i++) {
+      if (this.inputtedCharacters[i]) {
         numberOfCorrectMatches = numberOfCorrectMatches + 1;
       }
     }
-    if(numberOfCorrectMatches === 0) {
+    if (numberOfCorrectMatches === 0) {
       return 0;
     } else {
-      charactersPerMinute = parseFloat((numberOfCorrectMatches/this.gameTime)*60);
+      charactersPerMinute = parseFloat(
+        (numberOfCorrectMatches / this.gameTime) * 60
+      );
     }
     return charactersPerMinute;
   }
