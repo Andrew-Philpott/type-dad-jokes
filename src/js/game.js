@@ -131,6 +131,7 @@ export class Game {
     console.log(charCodeAtIndex);
     if (pushedKey === 32) {
       this.checkWord();
+      this.addMatchBool(true);
     } else if (charCodeAtIndex !== pushedKey) {
       this.incrementErrors();
       this.addMatchBool(false);
@@ -138,10 +139,19 @@ export class Game {
       this.addMatchBool(true);
     }
     this.incrementCharacterIndex();
-    if (this.charactersIndex === this.characters.length - 1);
+    if (this.charactersIndex === this.characters.length - 1) {
+      console.log("End game");
+    }
     console.log(`checked ${pushedKey}`);
   }
 
+  calculateScore() {
+    // let minutes = this.gameTime / 60;
+    // let seconds = this.gameTime % 60;
+    let wordsCorrect = this.wordsCorrect;
+    let wordsPerSecond = parseFloat(wordsCorrect/this.getGameTime());
+    console.log(wordsPerSecond);
+  }
   isRoundOver() {
     return false;
   }
