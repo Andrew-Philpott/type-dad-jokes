@@ -1,3 +1,5 @@
+import { Player } from './player.js';
+
 export class Game {
   constructor() {
     this.characters = [];
@@ -157,9 +159,11 @@ export class Game {
     }
   }
   calculateScore() {
+    if(this.currentPlayer instanceof Player) {
       this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMintue());
       this.currentPlayer.setCharactersPerMinute(this.calculateCharactersPerMintue());
       this.currentPlayer.setErrors(this.getErrors());
+    }
   }
   calculateWordsPerMintue() {
     let wordsPerMinute = parseFloat((this.wordsCorrect / this.gameTime) * 60);
