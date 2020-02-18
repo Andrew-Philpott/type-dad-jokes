@@ -84,16 +84,13 @@ export class Game {
   removeCharacter() {
     this.getInputtedCharacters.pop();
   }
-  // setWordCompletionTime(word) {
-  // }
-  // getWordCompletionTime(word) {
-  // }
   startGame() {
     this.round = false;
     this.setGameTime(0);
     this.setStartTime();
     this.startTimer();
   }
+  
   startTimer() {
     console.log(this.startTime + " start time");
     let timeNow = Math.floor(Date.now() / 1000);
@@ -107,19 +104,18 @@ export class Game {
   }
 
   checkWord() {
-    let reverseWord = [];
+    let matches = [];
     let i = 0;
     while (
       this.characters[this.charactersIndex + i] !== " " &&
       this.charactersIndex + i >= 0
     ) {
       console.log(this.characters[this.charactersIndex + i]);
-      reverseWord.push(this.characters[this.charactersIndex + i]);
+      matches.push(this.inputtedCharacters[this.charactersIndex + i]);
       i--;
     }
-    let word = reverseWord.reverse().join("");
-    console.log(word);
-    if (word === this.words[this.wordsIndex]) {
+    let checkMatches = matches => matches.every(match => match === true);
+    if(checkMatches) {
       this.wordsCorrect = this.wordsCorrect + 1;
     }
   }
@@ -129,17 +125,20 @@ export class Game {
   //   }
   // }
   // checkWord() {
-
-  checkCharacter(pushedKey) {
-    if (this.characters[this.charactersIndex] !== pushedKey) {
-      this.incrementErrors();
-      this.setInputtedCharacters(false);
-    } else if (this.characters[this.charactersIndex] === " ") {
-      this.checkWord();
+    checkCharacter(pushedKey) {
+      let charCodeAtIndex = (this.characters[this.charactersIndex]).charCodeAt();
+      if(pushedKey === 32) {
+        this.checkWord();
+      } else if(charCodeAtIndex !== pushedKey) {
+        this.incrementErrors();
+        this.addMatchBool(false);
+      } else if(charCodeAtIndex === pushedKey) {
+        this.addMatchBool(true);
+      }
+      this.incrementCharacterIndex();
+      if(this.charactersIndex === this.characters.length-1);
+      console.log(`checked ${pushedKey}`);
     }
-    this.incrementCharacterIndex();
-    console.log(`checked ${pushedKey}`);
-  }
 
   isRoundOver() {
     return false;
