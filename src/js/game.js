@@ -132,11 +132,13 @@ export class Game {
   // }
   // checkWord() {
   checkCharacter(pushedKey) {
-    if(pushedKey === 8 && this.charactersIndex > 0) {
-      this.decrementCharacterIndex();
-      this.inputtedCharacters.pop();
+    if(pushedKey === 8)  {
+      if(this.charactersIndex > 0 && (this.characters[this.charactersIndex] !== " ")) {
+        this.decrementCharacterIndex();
+        this.inputtedCharacters.pop();
+      }
     } else {
-      if (this.charactersIndex < this.characters.length) {
+      if ((this.charactersIndex < this.characters.length) && (pushedKey !== 8)) {
         let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
         if (pushedKey === 32 && charCodeAtIndex === 32) {
           this.checkWord();
@@ -159,9 +161,7 @@ export class Game {
       player.setWordsPerMinute(this.calculateWordsPerMintue());
       player.setCharactersPerMinute(this.calculateCharactersPerMintue());
       player.setErrors(this.getErrors());
-      return player;
     }
-    return false;
   }
   calculateWordsPerMintue() {
     let wordsPerMinute = parseFloat((this.wordsCorrect/this.gameTime)*60);
