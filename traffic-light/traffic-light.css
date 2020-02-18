@@ -1,116 +1,165 @@
 /* Traffic light css */
 
-.trafficlight{
-    background: #222;
-    background-image: linear-gradient(transparent 2%, #111 2%, transparent 3%, #111 30%);
-    width: 170px;
-    height: 400px;
-    position: relative;
-  }
-  
-  .red{
-    background: red;
-    background-size: 5px 5px; 
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    left: 35px;
-    animation: 5s red;
-    opacity: .1;
-  }
-  
-  .yellow{
-    background: yellow;
-    background-size: 5px 5px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 145px;
-    left: 35px;
-    animation: 5s yellow;
-    opacity: .1;
-  }
-  
-  .green{
-    background: green;
-    background-size: 5px 5px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 270px;
-    left: 35px;
-    animation: 5s green;
-    opacity: .1;
-  }
-  
-  @keyframes red{
-    0%{opacity: 1;}
-    29%{opacity: 1;}
-    30%{opacity: 0;}
-    60%{opacity: 0;}
-    80%{opacity: 0;}
-    100%{opacity: 0;}
-  }
-  
-  @keyframes yellow{
-    0%{opacity: 0;}
-    30%{opacity: 0;}
-    31%{opacity: 1;}
-    59%{opacity: 1;}
-    60%{opacity: 0;}
-    80%{opacity: 0;}
-    100%{opacity: 0;}
-  }
-  
-  @keyframes green{
-    0%{opacity: 0;}
-    20%{opacity: 0;}
-    40%{opacity: 0;}
-    60%{opacity: 0;}
-    61%{opacity: 1;}
-    85%{opacity: 1;}
-    90%{opacity: 1;}
-    95%{opacity: 1;}
-    100%{opacity: 1;}
-  }
-  
-  p {
-    font-size: 42px;
-    font-weight: 700;
-  }
-  
-  #pred {
-    color: red;
-    position: absolute;
-    animation: red 5s;
-    left: 250px;
-    top: 10px;
-    text-shadow: 2px 3px 2px black;
-    opacity: 0;
-  }
-  
-  #pyellow {
-    color: yellow;
-    position: absolute;
-    animation: yellow 5s;
-    left: 250px;
-    top: 135px;
-    text-shadow: 2px 3px 2px black;
-    opacity: 0;
-  }
-  
-  #pgreen {
-    color: green;
-    position: absolute;
-    animation: green 5s;
-    left: 250px;
-    top: 260px;
-    text-shadow: 1px 1px 2px black;
-    opacity: 0;
-  }
+.trafficlight {
+  background: #222;
+  background-image: linear-gradient(
+    transparent 2%,
+    #111 2%,
+    transparent 3%,
+    #111 30%
+  );
+  width: 170px;
+  height: 400px;
+  position: relative;
+}
 
-  /* Traffic light end css */
+.red {
+  background: red;
+  background-size: 5px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 35px;
+  animation: 3s red;
+  opacity: 0.1;
+}
+
+.yellow {
+  background: yellow;
+  background-size: 5px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 145px;
+  left: 35px;
+  animation: 3s yellow;
+  opacity: 0.1;
+}
+
+.green {
+  background: green;
+  background-size: 5px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 270px;
+  left: 35px;
+  animation: 3s green;
+  opacity: 0.1;
+}
+
+@keyframes red {
+  0% {
+    opacity: 1;
+  }
+  29% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes yellow {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  31% {
+    opacity: 1;
+  }
+  59% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes green {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  61% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+p {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+#pred {
+  color: red;
+  position: absolute;
+  animation: red 5s;
+  left: 250px;
+  top: 10px;
+  text-shadow: 2px 3px 2px black;
+  opacity: 0;
+}
+
+#pyellow {
+  color: yellow;
+  position: absolute;
+  animation: yellow 5s;
+  left: 250px;
+  top: 135px;
+  text-shadow: 2px 3px 2px black;
+  opacity: 0;
+}
+
+#pgreen {
+  color: green;
+  position: absolute;
+  animation: green 5s;
+  left: 250px;
+  top: 260px;
+  text-shadow: 1px 1px 2px black;
+  opacity: 0;
+}
+
+/* Traffic light end css */

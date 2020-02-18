@@ -71,16 +71,6 @@
   font-size: 28px;
 }
 
-#traffic-light {
-  width: 500px;
-  height: 800px;
-  background-color: yellow;
-  display: none;
-  position: fixed;
-  top: auto;
-  left: auto;
-}
-
 #start-button {
   margin: 5%;
   font-size: 28px;
