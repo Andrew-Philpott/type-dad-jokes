@@ -138,8 +138,9 @@ export class Game {
       this.addMatchBool(true);
     }
     this.incrementCharacterIndex();
-    if (this.charactersIndex === this.characters.length - 1);
-    console.log(`checked ${pushedKey}`);
+    if (this.charactersIndex === this.characters.length - 1) {
+      console.log("End of game");
+    }
   }
 
   isRoundOver() {
