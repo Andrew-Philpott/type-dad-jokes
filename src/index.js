@@ -54,18 +54,15 @@ function displayParagraph(game) {
 
 function updateParagraph(game) {
   // Change color of text based on correctness and shift left
+  let index = game.getCharacterIndex() - 1;
+
   if (game.getCharacterIndex() < game.paragraph.length) {
     let position = $("#paragraph").offset().left;
-    let width = $("#paragraph").width();
-    console.log(
-      "difference " + Math.floor(width / game.getCharacters().length)
-    );
-    let newPosition =
-      position - Math.floor(width / game.getCharacters().length);
+    let letterWidth = $(`#${index}`).width();
+    let newPosition = position - letterWidth;
     $("#paragraph").offset({ left: newPosition });
   }
 
-  let index = game.getCharacterIndex() - 1;
   $(`#${index}`).removeClass();
   $(`#${index + 1}`).addClass("next");
   if (game.inputtedCharacters[index]) {
