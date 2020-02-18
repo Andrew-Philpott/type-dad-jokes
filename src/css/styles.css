@@ -37,6 +37,7 @@
   border: 5px solid green;
   height: 200px;
   width: 100%;
+  padding: 30px 0;
 }
 
 #paragraph-box {
@@ -56,10 +57,12 @@
 
 #paragraph {
   display: inline-block;
+  width: 80%;
 }
 
 #paragraph-padding {
-  width: 100%;
+  display: flex;
+  justify-content: flex-end;
   overflow: hidden;
 }
 
@@ -68,25 +71,36 @@
   font-size: 28px;
 }
 
+#traffic-light {
+  width: 500px;
+  height: 800px;
+  background-color: yellow;
+  display: none;
+  position: fixed;
+  top: auto;
+  left: auto;
+}
+
 #start-button {
   margin: 5%;
   font-size: 28px;
 }
 
-.neutral {
+span.neutral {
   font-weight: 700;
 }
 
-.correct {
+span.correct {
   font-weight: 700;
   opacity: 0.5;
 }
 
-.error {
+span.error {
   font-weight: 700;
   color: #c40d00;
 }
 
-.next {
+span.next {
+  font-weight: 700;
   text-decoration: underline;
 }
