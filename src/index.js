@@ -99,7 +99,6 @@ $(document).ready(function() {
     const name1 = $("#name-input").val();
     const player1 = new Player(name1);
     game.addPlayer(player1);
-    game.setCurrentPlayer(0);
     $("player-name").show();
     $("#player-name").text(name1);
 

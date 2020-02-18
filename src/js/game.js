@@ -206,5 +206,6 @@ export class Game {
 
   addPlayer(playerObj) {
     this.players.push(playerObj);
+    this.setCurrentPlayer(0);
   }
 }
