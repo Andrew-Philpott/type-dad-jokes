@@ -49,7 +49,9 @@ function displayParagraph(game) {
     spanParagraph += spanChar;
   }
   $("#paragraph-box").empty();
-  $("#paragraph-box").append(`<div id="paragraph"> ${spanParagraph} </div>`);
+  $("#paragraph-box").append(
+    `<div id="paragraph-padding"><div id="paragraph">${spanParagraph}</div></div>`
+  );
 }
 
 function updateParagraph(game) {
