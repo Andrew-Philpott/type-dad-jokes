@@ -126,23 +126,22 @@ export class Game {
   // }
   // checkWord() {
   checkCharacter(pushedKey) {
-    console.log(pushedKey);
-    let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
-    console.log(charCodeAtIndex);
-    if (pushedKey === 32 && charCodeAtIndex === 32) {
-      this.checkWord();
-      this.addMatchBool(true);
-    } else if (pushedKey === 32 && charCodeAtIndex !== 32) {
-      this.addMatchBool(false);
-    } else if (charCodeAtIndex !== pushedKey) {
-      this.incrementErrors();
-      this.addMatchBool(false);
-    } else if (charCodeAtIndex === pushedKey) {
-      this.addMatchBool(true);
-    }
-    this.incrementCharacterIndex();
     if (this.charactersIndex === this.characters.length - 1) {
       console.log("End of game");
+    } else {
+      let charCodeAtIndex = this.characters[this.charactersIndex].charCodeAt(0);
+      if (pushedKey === 32 && charCodeAtIndex === 32) {
+        this.checkWord();
+        this.addMatchBool(true);
+      } else if (pushedKey === 32 && charCodeAtIndex !== 32) {
+        this.addMatchBool(false);
+      } else if (charCodeAtIndex !== pushedKey) {
+        this.incrementErrors();
+        this.addMatchBool(false);
+      } else if (charCodeAtIndex === pushedKey) {
+        this.addMatchBool(true);
+      }
+      this.incrementCharacterIndex();
     }
   }
 

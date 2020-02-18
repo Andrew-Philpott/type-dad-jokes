@@ -101,9 +101,7 @@ $(document).ready(function() {
       game.checkCharacter(event.which);
       updateParagraphColor(game);
       // displayStats(game);
-      console.log("is game over " + game.isRoundOver());
       if (game.isRoundOver()) {
-        console.log("is game over " + game.isRoundOver());
         game.clearTimer();
         $("#start-button").show();
         $("#paragraph-button").show();
@@ -116,9 +114,7 @@ $(document).ready(function() {
         game.checkCharacter(event.which);
         updateParagraphColor(game);
         // displayStats(game);
-        console.log("is game over " + game.isRoundOver());
         if (game.isRoundOver()) {
-          console.log("is game over " + game.isRoundOver());
           displayStats(game);
           game.clearTimer();
           $("#start-button").show();
