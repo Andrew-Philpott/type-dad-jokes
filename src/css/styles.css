@@ -1,6 +1,6 @@
 .container {
   border: 5px solid purple;
-  text-align: center;
+  /* text-align: center; */
   height: 90vh;
 }
 
@@ -103,4 +103,30 @@ span.error {
 span.next {
   font-weight: 700;
   text-decoration: underline;
+}
+
+#player-names-container {
+  display: flex;
+  justify-content: left;
+}
+#players-select {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.players-button {
+  width: 90%;
+  height: 30%;
+  border-radius: 25px;
+  font-size: 3em;
+  color: aliceblue;
+}
+.players-button:first-of-type {
+  background-color: #4fb84f;
+}
+.players-button:last-of-type {
+  background-color: #1f8dd6;
 }

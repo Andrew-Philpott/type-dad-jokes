@@ -88,19 +88,45 @@ function updateEveryHalfSecond(game) {
   }, 500);
 }
 
+function createPlayerNameInputs(numberOfPlayers) {
+  let numberOfPlayersToNumber = parseInt(numberOfPlayers);
+  let nameForm = $("#name-form");
+  let nameInputsHtml = `<div id='player-names-container' class='form-group>'`;
+  if(numberOfPlayersToNumber === 1) {
+    nameInputsHtml += `<div class='name-container'><label for='name-input-1'>Enter your name:</label><input class='player-name-input' type='text' id='name-input-1' required /></div>`;
+  } else {
+    for(let i = 1; i <= numberOfPlayersToNumber; i++) {
+      nameInputsHtml += `<div class='name-container'><label for='name-input-${i}'>Player ${i}'s name</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
+    }
+  }
+  nameInputsHtml += `<button type='submit' id='name-button'>Submit</button></div>`;
+  nameForm.append(nameInputsHtml);
+}
+
 $(document).ready(function() {
   const game = new Game();
   callAPI(game);
   $("#page-two").hide();
 
+  // ON NUMBER OF PLAYERS SUBMIT
+  $("#players-select").on("click", ".players-button", function() {
+    let playerCountInput = $(this).val();
+    $("#players-select").hide();
+    createPlayerNameInputs(playerCountInput);
+  })
+
   // ON SUBMIT OF USER NAME
   $("#name-form").submit(function(event) {
     event.preventDefault();
-    const name1 = $("#name-input").val();
-    const player1 = new Player(name1);
-    game.addPlayer(player1);
+    let nameInputs = [];
+    nameInputs = $(".player-name-input");
+    for(let i = 0; i < nameInputs.length; i++) {
+      let name = $(nameInputs[i]).val();
+      let player = new Player(name);
+      game.addPlayer(player);
+    }
     $("player-name").show();
-    $("#player-name").text(name1);
+    $("#player-name").text(game.currentPlayer.getName());
 
     $("#name-form").hide();
     $("#page-two").show();
