@@ -32,7 +32,8 @@ function formatParagraph(paragraph) {
   // Shorten paragrph to 100 words
   let shortWordsArray = paragraph.split(" ");
   if (shortWordsArray.length > 100) {
-    shortWordsArray = shortWordsArray.slice(0, 101);
+    // shortWordsArray = shortWordsArray.slice(0, 101);
+    shortWordsArray = shortWordsArray.slice(0, 10);
   } else {
     shortWordsArray = shortWordsArray.slice(0);
   }
@@ -90,7 +91,9 @@ function backSpace(game, prevIndex) {
 }
 
 function displayStats(game) {
-  game.calculateScore();
+  if (!game.isRoundOver()) {
+    game.calculateScore();
+  }
   $("#player-name").text(game.currentPlayer.getName());
   $("#timer").text(`${game.getGameTime()}`);
   $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
@@ -123,8 +126,41 @@ function createPlayerNameInputs(numberOfPlayers) {
 function endRound(game) {
   removeKeyboardListeners();
   game.clearTimer();
-  $("#start-button").show();
-  $("#paragraph-button").show();
+  if (!game.isTwoPlayer()) {
+    $("#start-button").show();
+  } else if (game.getRoundCount() === 0) {
+    $("#start-button").show();
+    $("#paragraph-button").show();
+  } else if (game.isTwoPlayer() && game.getRoundCount() === 1) {
+    $("#start-button").show();
+    $("#start-button").text("Next Player");
+  } else if (game.isTwoPlayer() && game.getRoundCount() === 2) {
+    $("#start-button").text("Start Race");
+    $("#game-page").hide();
+    $("#results-page").show();
+    displayResults(game);
+  }
+}
+
+function displayResults(game) {
+  for (let i = 0; i < game.players.length; i++) {
+    $(`#player${i}-results`).append(
+      `<p><span>Player:</span> ${game.players[i].getName()}</p>`
+    );
+    $(`#player${i}-results`).append(
+      `<p><span>Words per Minute:</span> ${game.players[
+        i
+      ].getWordsPerMinute()}</p>`
+    );
+    $(`#player${i}-results`).append(
+      `<p><span>Characters per Minute:</span> ${game.players[
+        i
+      ].getCharactersPerMinute()}</p>`
+    );
+    $(`#player${i}-results`).append(
+      `<p><span>Errors: </span>${game.players[i].getErrors()}</p>`
+    );
+  }
 }
 
 function keyPressEventListener(game, event) {
@@ -164,7 +200,8 @@ function removeKeyboardListeners() {
 $(document).ready(function() {
   const game = new Game();
   callAPI(game);
-  $("#page-two").hide();
+  $("#game-page").hide();
+  $("#results-page").hide();
 
   // ON NUMBER OF PLAYERS SUBMIT
   $("#players-select").on("click", ".players-button", function() {
@@ -184,11 +221,8 @@ $(document).ready(function() {
       let player = new Player(name);
       game.addPlayer(player);
     }
-    $("player-name").show();
     $("#name-form").hide();
-    $("#page-two").show();
-    $("#paragraph-box").show();
-    $("#keyboard").show();
+    $("#game-page").show();
     updateEveryQuarterSecond(game);
   });
 
@@ -204,14 +238,17 @@ $(document).ready(function() {
       displayParagraph(game);
     }, 3000);
     $("#start-button").hide();
+    if (game.isTwoPlayer()) {
+      $("#paragraph-button").hide();
+    }
 
     // ON KEY PRESS (giving values of keys to backend)
     $(document).keypress(function(event) {
       event.preventDefault();
       keyPressEventListener(game, event);
       if (game.isRoundOver()) {
-        endRound(game);
         game.changePlayer();
+        endRound(game);
       }
     });
 
@@ -219,17 +256,14 @@ $(document).ready(function() {
     $(document).keydown(function(event) {
       keyDownEventListener(game, event);
       if (game.isRoundOver()) {
-        endRound(game);
         game.changePlayer();
+        endRound(game);
       }
     });
 
     // ON KEY UP (visual keyboard release)
     $(document).keyup(function(event) {
       keyUpEventListener(event);
-      if (game.isRoundOver()) {
-        endRound(game);
-      }
     });
   });
 
@@ -239,5 +273,16 @@ $(document).ready(function() {
     callAPI(game);
     endRound(game);
     $(".stats").empty();
+  });
+
+  // ON CLICK OF NEW GAME BUTTON
+  $("#new-game").click(function(event) {
+    event.preventDefault();
+    $("#game-page").show();
+    $(".results-section").empty();
+    $("#results-page").hide();
+    game.resetRoundCount();
+    callAPI(game);
+    endRound(game);
   });
 });

@@ -1,3 +1,11 @@
+/* 
+light green: dbf0db
+green: 4FB84F
+blue: 1F8DD6
+light grey: DEDEDE
+med grey: BFBFBF
+*/
+
 html,
 body {
   height: 100%;
@@ -6,10 +14,10 @@ body {
   justify-content: center;
   align-items: center;
   padding: 40px;
+  background-color: #dbf0db;
 }
 
 .container {
-  /* border: 5px solid purple; */
   text-align: center;
   height: 100%;
 }
@@ -19,17 +27,15 @@ body {
   font-size: 24px;
 }
 
-#page-two {
+#game-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  /* border: 3px solid green; */
   min-height: 80%;
 }
 
 #player-name {
-  /* border: 5px solid red; */
   font-size: 3em;
   display: flex;
   justify-content: center;
@@ -41,11 +47,9 @@ body {
   display: flex;
   justify-content: space-around;
   width: 80%;
-  /* border: 3px solid yellow; */
 }
 
 #stats-box {
-  /* border: 5px solid green; */
   width: 100%;
 }
 
@@ -54,7 +58,6 @@ body {
 }
 
 #paragraph-box {
-  /* border: 5px solid blue; */
   min-height: 150px;
   width: 100%;
   line-height: 2.5;
@@ -143,6 +146,41 @@ span.next {
 }
 .players-button:last-of-type {
   background-color: #1f8dd6;
+}
+
+#results-page {
+  min-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid blue;
+}
+
+#player-results-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.results-section {
+  border: 5px solid black;
+  width: 45%;
+  min-height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.results-section p {
+  font-size: 1.2em;
+}
+
+.results-section span {
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 /* Traffic light css */
@@ -318,7 +356,6 @@ span.next {
   display: inline-block;
   text-align: center;
   width: 780px;
-  /* border: 3px solid pink; */
 }
 
 #keyboard div {

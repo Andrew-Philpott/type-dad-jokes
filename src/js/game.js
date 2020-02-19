@@ -15,6 +15,19 @@ export class Game {
     this.errors = 0;
     this.wordsCorrect = 0;
     this.currentPlayer;
+    this.roundCount = 0;
+  }
+
+  incrementRoundCount() {
+    this.roundCount++;
+  }
+
+  getRoundCount() {
+    return this.roundCount;
+  }
+
+  resetRoundCount() {
+    this.roundCount = 0;
   }
 
   setCurrentPlayer(value) {
@@ -114,7 +127,6 @@ export class Game {
       this.characters[this.charactersIndex + i] !== " " &&
       this.charactersIndex + i >= 0
     ) {
-      console.log(this.characters[this.charactersIndex + i]);
       matches.push(this.inputtedCharacters[this.charactersIndex + i]);
       i--;
     }
@@ -126,6 +138,7 @@ export class Game {
 
   changePlayer() {
     if (this.players.length !== 1) {
+      this.incrementRoundCount();
       if (this.currentPlayer === this.players[0]) {
         this.setCurrentPlayer(1);
       } else {
@@ -167,14 +180,14 @@ export class Game {
   }
   calculateScore() {
     if (this.currentPlayer instanceof Player) {
-      this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMintue());
+      this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMinute());
       this.currentPlayer.setCharactersPerMinute(
-        this.calculateCharactersPerMintue()
+        this.calculateCharactersPerMinute()
       );
       this.currentPlayer.setErrors(this.getErrors());
     }
   }
-  calculateWordsPerMintue() {
+  calculateWordsPerMinute() {
     if (this.gameTime === 0) {
       return 0;
     } else if (this.wordsCorrect === 0) {
@@ -184,7 +197,7 @@ export class Game {
       return wordsPerMinute;
     }
   }
-  calculateCharactersPerMintue() {
+  calculateCharactersPerMinute() {
     let numberOfCorrectMatches = 0;
     let charactersPerMinute = 0;
     if (this.gameTime === 0) {
@@ -215,5 +228,9 @@ export class Game {
   addPlayer(playerObj) {
     this.players.push(playerObj);
     this.setCurrentPlayer(0);
+  }
+
+  isTwoPlayer() {
+    return this.players.length === 2 ? true : false;
   }
 }
