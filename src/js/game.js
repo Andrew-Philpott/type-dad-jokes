@@ -217,6 +217,9 @@ export class Game {
   }
 
   isTwoPlayer() {
+    console.log(
+      "NEED TO ACTUALLY WRITE THIS METHOD SO IT'S TRUE WHEN IT SHOULD BE"
+    );
     return true;
   }
 }
