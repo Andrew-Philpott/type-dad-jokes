@@ -210,6 +210,8 @@ $(document).ready(function() {
       keyPressEventListener(game, event);
       if (game.isRoundOver()) {
         endRound(game);
+        game.changePlayer();
+        $("#player-name").text(game.currentPlayer.getName());
       }
     });
 
@@ -218,6 +220,8 @@ $(document).ready(function() {
       keyDownEventListener(game, event);
       if (game.isRoundOver()) {
         endRound(game);
+        game.changePlayer();
+        $("#player-name").text(game.currentPlayer.getName());
       }
     });
 
