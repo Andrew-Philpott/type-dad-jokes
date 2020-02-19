@@ -32,6 +32,6 @@ _CSS_
 _JavaScript_
 
 ### License
-Copyright (c) 2020 **_Andrew Philpott, Sasa Schwartz_**
+Copyright (c) 2020 **_Andrew Philpott, Sasa Schwartz, Jiwon Han_**
 
 *This software is licensed under the MIT license.*
