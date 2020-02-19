@@ -14,11 +14,6 @@ body {
   height: 100%;
 }
 
-#name-form {
-  margin-top: 40%;
-  font-size: 24px;
-}
-
 #page-two {
   display: flex;
   flex-direction: column;
@@ -36,7 +31,9 @@ body {
   align-items: center;
   width: 100%;
 }
-
+#player-names-container h1 {
+  font-size: 3em;
+}
 #buttons {
   display: flex;
   justify-content: space-around;
@@ -107,29 +104,49 @@ span.next {
   font-weight: 700;
   text-decoration: underline;
 }
-
-#player-names-container {
-  display: flex;
-  justify-content: left;
-  flex-direction: column;
+#name-form {
+  height: 100%;
 }
-.name-container{
-  background-color: #4fb84f;
+#name-button-container {
+  float: right;
+}
+#name-button {
   height: 20%;
-  width: 40%;
+  width: 50%;
+  border-radius: 25px;
+}
+.name-container {
+  height: 20%;
+  width: 100%;
+  border-radius: 25px;
+  font-size: 3em;
+  color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  padding-left: 5%;
+  padding-top: 2%;
+}
+.name-container input {
+  width: 60%;
+  height: 10%;
+  border-radius: 25px;
+  background-color: aliceblue;
+  border-color: white;
+  margin-left: 20px;
+}
+.name-container:first-of-type {
+  background-color: #4fb84f;
 }
 .name-container:last-of-type {
   background-color: #1f8dd6;
-  height: 20%;
-  width: 40%;
 }
 #players-select {
   width: 100%;
   height: 40%;
   display: flex;
   justify-content: center;
-  align-content: center;
   flex-wrap: wrap;
+  border: 2px solid red;
 }
 .players-button {
   width: 90%;
@@ -144,7 +161,14 @@ span.next {
 .players-button:last-of-type {
   background-color: #1f8dd6;
 }
-
+.game-button {
+  width: 30%;
+  height: 20%;
+  min-width: 300px;
+  border-radius: 25px;
+  color: aliceblue;
+  background-color: #4fb84f;
+}
 /* Traffic light css */
 #traffic-light-bg {
   width: 100vw;

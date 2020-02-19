@@ -107,16 +107,18 @@ function updateEveryQuarterSecond(game) {
 function createPlayerNameInputs(numberOfPlayers) {
   let numberOfPlayersToNumber = parseInt(numberOfPlayers);
   let nameForm = $("#name-form");
-  let nameInputsHtml = "";
+  let nameInputsHtml = ``;
   nameInputsHtml += `<div id='player-names-container' class='form-group'><p><h1>Enter your names</h1></p>`;
   if (numberOfPlayersToNumber === 1) {
     nameInputsHtml += `<div class='name-container'><label for='name-input-1'>Enter your name:</label><input class='player-name-input' type='text' id='name-input-1' required /></div>`;
   } else {
     for (let i = 1; i <= numberOfPlayersToNumber; i++) {
-      nameInputsHtml += `<div class='name-container'><label for='name-input-${i}'>Player ${i}'s name</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
+      nameInputsHtml += `<div class='name-container'><label for='name-input-${i}'>Enter your name:</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
+      //nameInputsHtml += `<div class='name-container'><label for='name-input-${i}'>Player ${i}</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
     }
   }
-  nameInputsHtml += `<button type='submit' id='name-button'>Submit</button></div>`;
+  nameInputsHtml += `</div><div><button id='name-button' type='submit'>Submit</button></div>`;
+  
   nameForm.html(nameInputsHtml);
 }
 
