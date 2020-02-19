@@ -171,6 +171,7 @@ $(document).ready(function() {
   $("#players-select").on("click", ".players-button", function() {
     let playerCountInput = $(this).val();
     $("#players-select").hide();
+    $("#header").hide();
     createPlayerNameInputs(playerCountInput);
   });
 
