@@ -1,7 +1,17 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
 .container {
-  border: 5px solid purple;
+  /* border: 5px solid purple; */
   text-align: center;
-  height: 90vh;
+  height: 100%;
 }
 
 #name-form {
@@ -13,16 +23,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  /* border: 3px solid green; */
+  min-height: 80%;
 }
 
 #player-name {
-  border: 5px solid red;
-  height: 100px;
+  /* border: 5px solid red; */
   font-size: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0;
   width: 100%;
 }
 
@@ -30,23 +41,25 @@
   display: flex;
   justify-content: space-around;
   width: 80%;
-  border: 3px solid yellow;
+  /* border: 3px solid yellow; */
 }
 
 #stats-box {
-  border: 5px solid green;
-  height: 200px;
+  /* border: 5px solid green; */
   width: 100%;
-  padding: 30px 0;
+}
+
+#stats-box p {
+  font-size: 1.2em;
 }
 
 #paragraph-box {
-  border: 5px solid blue;
-  min-height: 300px;
+  /* border: 5px solid blue; */
+  min-height: 150px;
   width: 100%;
   line-height: 2.5;
   font-size: 1.4em;
-  padding: 30px 70px;
+  padding: 20px 70px;
   text-align: justify;
   white-space: nowrap;
   letter-spacing: 1px;
@@ -67,12 +80,12 @@
 }
 
 #paragraph-button {
-  margin: 5%;
+  margin: 0 5%;
   font-size: 28px;
 }
 
 #start-button {
-  margin: 5%;
+  margin: 0 5%;
   font-size: 28px;
 }
 
@@ -262,7 +275,7 @@ span.next {
   }
 }
 
-p {
+#traffic-light p {
   font-size: 42px;
   font-weight: 700;
 }
@@ -300,6 +313,7 @@ p {
   display: inline-block;
   text-align: center;
   width: 780px;
+  /* border: 3px solid pink; */
 }
 
 #keyboard div {
