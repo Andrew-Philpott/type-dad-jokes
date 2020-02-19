@@ -174,7 +174,9 @@ export class Game {
     }
   }
   calculateWordsPerMintue() {
-    if (this.wordsCorrect === 0) {
+    if(this.gameTime === 0) {
+      return 0;
+    } else if (this.wordsCorrect === 0) {
       return 0;
     } else {
       let wordsPerMinute = Math.floor((this.wordsCorrect / this.gameTime) * 60);
@@ -184,6 +186,9 @@ export class Game {
   calculateCharactersPerMintue() {
     let numberOfCorrectMatches = 0;
     let charactersPerMinute = 0;
+    if(this.gameTime === 0) {
+      return 0;
+    }
     for (let i = 0; i < this.inputtedCharacters.length; i++) {
       if (this.inputtedCharacters[i]) {
         numberOfCorrectMatches = numberOfCorrectMatches + 1;
