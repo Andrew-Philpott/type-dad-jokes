@@ -107,7 +107,8 @@ function updateEveryQuarterSecond(game) {
 function createPlayerNameInputs(numberOfPlayers) {
   let numberOfPlayersToNumber = parseInt(numberOfPlayers);
   let nameForm = $("#name-form");
-  let nameInputsHtml = `<div id='player-names-container' class='form-group>'`;
+  let nameInputsHtml = "";
+  nameInputsHtml += `<div id='player-names-container' class='form-group'><p><h1>Enter your names</h1></p>`;
   if (numberOfPlayersToNumber === 1) {
     nameInputsHtml += `<div class='name-container'><label for='name-input-1'>Enter your name:</label><input class='player-name-input' type='text' id='name-input-1' required /></div>`;
   } else {
@@ -116,7 +117,7 @@ function createPlayerNameInputs(numberOfPlayers) {
     }
   }
   nameInputsHtml += `<button type='submit' id='name-button'>Submit</button></div>`;
-  nameForm.append(nameInputsHtml);
+  nameForm.html(nameInputsHtml);
 }
 
 function endRound(game) {

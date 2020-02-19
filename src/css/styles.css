@@ -111,12 +111,17 @@ span.next {
 #player-names-container {
   display: flex;
   justify-content: left;
+  flex-direction: column;
 }
-#name-container:first-of-type {
+.name-container{
   background-color: #4fb84f;
+  height: 20%;
+  width: 40%;
 }
-#name-container:last-of-type {
-  
+.name-container:last-of-type {
+  background-color: #1f8dd6;
+  height: 20%;
+  width: 40%;
 }
 #players-select {
   width: 100%;
