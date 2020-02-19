@@ -12,7 +12,6 @@ body {
   border: 5px solid purple;
   text-align: center;
   height: 100%;
-  min-height: 850px;
 }
 
 #name-form {
@@ -24,15 +23,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   border: 3px solid green;
-  height: 100%;
-  min-height: 850px;
+  min-height: 80%;
 }
 
 #player-name {
   border: 5px solid red;
-  margin: 30px 0 0 0;
-  min-height: 100px;
   font-size: 3em;
   display: flex;
   justify-content: center;
@@ -45,14 +42,11 @@ body {
   justify-content: space-around;
   width: 80%;
   border: 3px solid yellow;
-  min-height: 150px;
 }
 
 #stats-box {
   border: 5px solid green;
-  min-height: 150px;
   width: 100%;
-  padding: 30px 0;
 }
 
 #stats-box p {
@@ -61,12 +55,11 @@ body {
 
 #paragraph-box {
   border: 5px solid blue;
-  margin: 50px 0 0 0;
   min-height: 150px;
   width: 100%;
   line-height: 2.5;
   font-size: 1.4em;
-  padding: 30px 70px;
+  padding: 20px 70px;
   text-align: justify;
   white-space: nowrap;
   letter-spacing: 1px;
@@ -87,12 +80,12 @@ body {
 }
 
 #paragraph-button {
-  margin: 5%;
+  margin: 0 5%;
   font-size: 28px;
 }
 
 #start-button {
-  margin: 5%;
+  margin: 0 5%;
   font-size: 28px;
 }
 
@@ -314,7 +307,6 @@ span.next {
   display: inline-block;
   text-align: center;
   width: 780px;
-  margin: 30px 0 0 0;
   border: 3px solid pink;
 }
 
