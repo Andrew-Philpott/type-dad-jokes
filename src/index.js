@@ -149,7 +149,7 @@ $(document).ready(function() {
     $("#keyboard").show();
     updateEveryHalfSecond(game);
 
-    console.log('the value is' + $('#keyboard input[value]'))
+    console.log("the value is" + $("#keyboard input[value]"));
   });
 
   // ON CLICK ON START BUTTON
@@ -176,13 +176,13 @@ $(document).ready(function() {
       }
     });
 
-
-
     // ON KEY DOWN (backspace recognition)
     $(document).keydown(function(event) {
-      if (event.which === 8) {
+      let keycode = event.which;
+
+      if (keycode === 8) {
         let prevIndex = game.getCharacterIndex();
-        game.checkCharacter(event.which);
+        game.checkCharacter(keycode);
         backSpace(game, prevIndex);
         displayStats(game);
         if (game.isRoundOver()) {
@@ -191,31 +191,22 @@ $(document).ready(function() {
           $("#paragraph-button").show();
         }
       }
-      var keycode = (event.keyCode ? event.keyCode : event.which);
-      console.log('keycode is' + keycode)
-      let letter = String.fromCharCode(keycode)
-      console.log('letter converted from keycode is ' + letter)
-      const values = $('#keyboard input[value]')
-      console.log('value is' + values)
-      for (var i =0; i < values.length; i ++) {
-      if( letter === values[i].value) {
-
-        console.log(values[i])
-        $(values).removeClass('buttonPressEffect');
-        $(values[i]).addClass('buttonPressEffect');
-
+      let letter = String.fromCharCode(keycode);
+      const values = $("#keyboard input[value]");
+      for (let i = 0; i < values.length; i++) {
+        if (letter === values[i].value) {
+          $(values).removeClass("buttonPressEffect");
+          $(values[i]).addClass("buttonPressEffect");
+        }
       }
-
-    }
     });
 
     $(document).keyup(function(event) {
       event.preventDefault();
-      const values = $('#keyboard input[value]')
-      $(values).removeClass('buttonPressEffect');
-    })
+      const values = $("#keyboard input[value]");
+      $(values).removeClass("buttonPressEffect");
+    });
   });
-
 
   // ON CLICK OF CHANGE PARAGRAPH BUTTON
   $("#paragraph-button").click(function(event) {
@@ -225,5 +216,4 @@ $(document).ready(function() {
     $("#start-button").show();
     $(".stats").empty();
   });
-
 });
