@@ -123,14 +123,18 @@ function createPlayerNameInputs(numberOfPlayers) {
 function endRound(game) {
   removeKeyboardListeners();
   game.clearTimer();
-  $("#start-button").show();
-  if (!game.isTwoPlayer() || game.currentPlayer === game.players[0]) {
+  if (!game.isTwoPlayer()) {
+    $("#start-button").show();
+  } else if (game.getRoundCount() === 0) {
+    $("#start-button").show();
     $("#paragraph-button").show();
+  } else if (game.isTwoPlayer() && game.getRoundCount() === 1) {
+    $("#start-button").show();
+    $("#start-button").text("Next Player");
+  } else if (game.isTwoPlayer() && game.getRoundCount() === 2) {
     $("#start-button").text("Start Race");
     $("#game-page").hide();
     $("#results-page").show();
-  } else {
-    $("#start-button").text("Next Player");
   }
 }
 
@@ -234,9 +238,6 @@ $(document).ready(function() {
     // ON KEY UP (visual keyboard release)
     $(document).keyup(function(event) {
       keyUpEventListener(event);
-      if (game.isRoundOver()) {
-        endRound(game);
-      }
     });
   });
 
@@ -254,7 +255,8 @@ $(document).ready(function() {
     $("#game-page").show();
     $(".results-section").empty();
     $("#results-page").hide();
+    game.resetRoundCount();
     callAPI(game);
-    $(".stats").empty();
+    endRound(game);
   });
 });

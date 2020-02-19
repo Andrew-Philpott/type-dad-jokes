@@ -15,6 +15,19 @@ export class Game {
     this.errors = 0;
     this.wordsCorrect = 0;
     this.currentPlayer;
+    this.roundCount = 0;
+  }
+
+  incrementRoundCount() {
+    this.roundCount++;
+  }
+
+  getRoundCount() {
+    return this.roundCount;
+  }
+
+  resetRoundCount() {
+    this.roundCount = 0;
   }
 
   setCurrentPlayer(value) {
@@ -125,6 +138,7 @@ export class Game {
 
   changePlayer() {
     if (this.players.length !== 1) {
+      this.incrementRoundCount();
       if (this.currentPlayer === this.players[0]) {
         this.setCurrentPlayer(1);
       } else {
