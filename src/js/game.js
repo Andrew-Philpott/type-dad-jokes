@@ -114,7 +114,6 @@ export class Game {
       this.characters[this.charactersIndex + i] !== " " &&
       this.charactersIndex + i >= 0
     ) {
-      console.log(this.characters[this.charactersIndex + i]);
       matches.push(this.inputtedCharacters[this.charactersIndex + i]);
       i--;
     }
@@ -167,14 +166,14 @@ export class Game {
   }
   calculateScore() {
     if (this.currentPlayer instanceof Player) {
-      this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMintue());
+      this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMinute());
       this.currentPlayer.setCharactersPerMinute(
-        this.calculateCharactersPerMintue()
+        this.calculateCharactersPerMinute()
       );
       this.currentPlayer.setErrors(this.getErrors());
     }
   }
-  calculateWordsPerMintue() {
+  calculateWordsPerMinute() {
     if (this.gameTime === 0) {
       return 0;
     } else if (this.wordsCorrect === 0) {
@@ -184,7 +183,7 @@ export class Game {
       return wordsPerMinute;
     }
   }
-  calculateCharactersPerMintue() {
+  calculateCharactersPerMinute() {
     let numberOfCorrectMatches = 0;
     let charactersPerMinute = 0;
     if (this.gameTime === 0) {
