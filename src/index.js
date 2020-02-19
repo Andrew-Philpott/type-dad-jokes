@@ -127,6 +127,8 @@ function endRound(game) {
   if (!game.isTwoPlayer() || game.currentPlayer === game.players[0]) {
     $("#paragraph-button").show();
     $("#start-button").text("Start Race");
+    $("#game-page").hide();
+    $("#results-page").show();
   } else {
     $("#start-button").text("Next Player");
   }
@@ -170,6 +172,7 @@ $(document).ready(function() {
   const game = new Game();
   callAPI(game);
   $("#game-page").hide();
+  $("#results-page").hide();
 
   // ON NUMBER OF PLAYERS SUBMIT
   $("#players-select").on("click", ".players-button", function() {
@@ -242,6 +245,16 @@ $(document).ready(function() {
     event.preventDefault();
     callAPI(game);
     endRound(game);
+    $(".stats").empty();
+  });
+
+  // ON CLICK OF NEW GAME BUTTON
+  $("#new-game").click(function(event) {
+    event.preventDefault();
+    $("#game-page").show();
+    $(".results-section").empty();
+    $("#results-page").hide();
+    callAPI(game);
     $(".stats").empty();
   });
 });
