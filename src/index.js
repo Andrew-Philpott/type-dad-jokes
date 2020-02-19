@@ -126,6 +126,9 @@ function endRound(game) {
   $("#start-button").show();
   if (!game.isTwoPlayer() || game.currentPlayer === game.players[0]) {
     $("#paragraph-button").show();
+    $("#start-button").text("Start Race");
+  } else {
+    $("#start-button").text("Next Player");
   }
 }
 
