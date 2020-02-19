@@ -215,4 +215,8 @@ export class Game {
     this.players.push(playerObj);
     this.setCurrentPlayer(0);
   }
+
+  isTwoPlayer() {
+    return true;
+  }
 }

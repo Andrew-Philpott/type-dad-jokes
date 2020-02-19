@@ -32,7 +32,8 @@ function formatParagraph(paragraph) {
   // Shorten paragrph to 100 words
   let shortWordsArray = paragraph.split(" ");
   if (shortWordsArray.length > 100) {
-    shortWordsArray = shortWordsArray.slice(0, 101);
+    // shortWordsArray = shortWordsArray.slice(0, 101);
+    shortWordsArray = shortWordsArray.slice(0, 10);
   } else {
     shortWordsArray = shortWordsArray.slice(0);
   }
@@ -123,7 +124,9 @@ function endRound(game) {
   removeKeyboardListeners();
   game.clearTimer();
   $("#start-button").show();
-  $("#paragraph-button").show();
+  if (!game.isTwoPlayer() || game.currentPlayer === game.players[0]) {
+    $("#paragraph-button").show();
+  }
 }
 
 function keyPressEventListener(game, event) {
@@ -182,11 +185,8 @@ $(document).ready(function() {
       let player = new Player(name);
       game.addPlayer(player);
     }
-    $("player-name").show();
     $("#name-form").hide();
     $("#page-two").show();
-    $("#paragraph-box").show();
-    $("#keyboard").show();
     updateEveryQuarterSecond(game);
   });
 
@@ -202,14 +202,17 @@ $(document).ready(function() {
       displayParagraph(game);
     }, 3000);
     $("#start-button").hide();
+    if (game.isTwoPlayer()) {
+      $("#paragraph-button").hide();
+    }
 
     // ON KEY PRESS (giving values of keys to backend)
     $(document).keypress(function(event) {
       event.preventDefault();
       keyPressEventListener(game, event);
       if (game.isRoundOver()) {
-        endRound(game);
         game.changePlayer();
+        endRound(game);
       }
     });
 
@@ -217,8 +220,8 @@ $(document).ready(function() {
     $(document).keydown(function(event) {
       keyDownEventListener(game, event);
       if (game.isRoundOver()) {
-        endRound(game);
         game.changePlayer();
+        endRound(game);
       }
     });
 
