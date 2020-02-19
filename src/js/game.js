@@ -76,6 +76,7 @@ export class Game {
     this.setWords(paragraph);
     this.setParagraph(paragraph);
     this.charactersIndex = 0;
+    this.errors = 0;
   }
   getInputtedCharacters() {
     return this.inputtedCharacters;
@@ -174,7 +175,7 @@ export class Game {
     }
   }
   calculateWordsPerMintue() {
-    if(this.gameTime === 0) {
+    if (this.gameTime === 0) {
       return 0;
     } else if (this.wordsCorrect === 0) {
       return 0;
@@ -186,7 +187,7 @@ export class Game {
   calculateCharactersPerMintue() {
     let numberOfCorrectMatches = 0;
     let charactersPerMinute = 0;
-    if(this.gameTime === 0) {
+    if (this.gameTime === 0) {
       return 0;
     }
     for (let i = 0; i < this.inputtedCharacters.length; i++) {
