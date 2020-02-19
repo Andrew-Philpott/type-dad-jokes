@@ -111,10 +111,6 @@ span.next {
   font-weight: 700;
   text-decoration: underline;
 }
-#name-form {
-  height: 100%;
-  border: 2px solid green;
-}
 #player-names-container {
   height: 100%;
   border: 2px solid blue;
@@ -163,7 +159,6 @@ span.next {
 .rounded-white {
   border-radius: 25px;
   color: aliceblue;
-  margin-bottom: 1%;
 }
 .players-button {
   width: 90%;
