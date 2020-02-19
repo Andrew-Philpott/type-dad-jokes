@@ -169,7 +169,7 @@ function removeKeyboardListeners() {
 $(document).ready(function() {
   const game = new Game();
   callAPI(game);
-  $("#page-two").hide();
+  $("#game-page").hide();
 
   // ON NUMBER OF PLAYERS SUBMIT
   $("#players-select").on("click", ".players-button", function() {
@@ -189,7 +189,7 @@ $(document).ready(function() {
       game.addPlayer(player);
     }
     $("#name-form").hide();
-    $("#page-two").show();
+    $("#game-page").show();
     updateEveryQuarterSecond(game);
   });
 
