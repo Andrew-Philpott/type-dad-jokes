@@ -32,7 +32,8 @@ function formatParagraph(paragraph) {
   // Shorten paragrph to 100 words
   let shortWordsArray = paragraph.split(" ");
   if (shortWordsArray.length > 100) {
-    shortWordsArray = shortWordsArray.slice(0, 101);
+    // shortWordsArray = shortWordsArray.slice(0, 101);
+    shortWordsArray = shortWordsArray.slice(0, 10);
   } else {
     shortWordsArray = shortWordsArray.slice(0);
   }
@@ -91,16 +92,17 @@ function backSpace(game, prevIndex) {
 
 function displayStats(game) {
   game.calculateScore();
+  $("#player-name").text(game.currentPlayer.getName());
   $("#timer").text(`${game.getGameTime()}`);
   $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
   $("#cpm").text(`${game.currentPlayer.getCharactersPerMinute()}`);
   $("#errors").text(`${game.currentPlayer.getErrors()}`);
 }
 
-function updateEveryHalfSecond(game) {
+function updateEveryQuarterSecond(game) {
   setInterval(() => {
     displayStats(game);
-  }, 500);
+  }, 250);
 }
 
 function createPlayerNameInputs(numberOfPlayers) {
@@ -116,6 +118,47 @@ function createPlayerNameInputs(numberOfPlayers) {
   }
   nameInputsHtml += `<button type='submit' id='name-button'>Submit</button></div>`;
   nameForm.append(nameInputsHtml);
+}
+
+function endRound(game) {
+  removeKeyboardListeners();
+  game.clearTimer();
+  $("#start-button").show();
+  $("#paragraph-button").show();
+}
+
+function keyPressEventListener(game, event) {
+  let keycode = event.which;
+  game.checkCharacter(keycode);
+  updateParagraph(game);
+}
+
+function keyDownEventListener(game, event) {
+  let keycode = event.which;
+  if (keycode === 8 && !game.isRoundOver()) {
+    let prevIndex = game.getCharacterIndex();
+    game.checkCharacter(keycode);
+    backSpace(game, prevIndex);
+  }
+  let letter = String.fromCharCode(keycode);
+  const values = $("#keyboard input[value]");
+  for (let i = 0; i < values.length; i++) {
+    if (letter === values[i].value) {
+      $(values).removeClass("buttonPressEffect");
+      $(values[i]).addClass("buttonPressEffect");
+    }
+  }
+}
+
+function keyUpEventListener(event) {
+  event.preventDefault();
+  const values = $("#keyboard input[value]");
+  $(values).removeClass("buttonPressEffect");
+}
+
+function removeKeyboardListeners() {
+  $(document).off("keypress");
+  $(document).off("keydown");
 }
 
 $(document).ready(function() {
@@ -141,15 +184,11 @@ $(document).ready(function() {
       game.addPlayer(player);
     }
     $("player-name").show();
-    $("#player-name").text(game.currentPlayer.getName());
-
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();
     $("#keyboard").show();
-    updateEveryHalfSecond(game);
-
-    console.log('the value is' + $('#keyboard input[value]'))
+    updateEveryQuarterSecond(game);
   });
 
   // ON CLICK ON START BUTTON
@@ -165,65 +204,38 @@ $(document).ready(function() {
     }, 3000);
     $("#start-button").hide();
 
-    // ON KEY PRESS
+    // ON KEY PRESS (giving values of keys to backend)
     $(document).keypress(function(event) {
-      game.checkCharacter(event.which);
-      updateParagraph(game);
+      keyPressEventListener(game, event);
       if (game.isRoundOver()) {
-        game.clearTimer();
-        $("#start-button").show();
-        $("#paragraph-button").show();
+        endRound(game);
+        game.changePlayer();
       }
     });
 
-
-
-    // ON KEY DOWN (backspace recognition)
+    // ON KEY DOWN (backspace and visual keyboard)
     $(document).keydown(function(event) {
-      if (event.which === 8) {
-        let prevIndex = game.getCharacterIndex();
-        game.checkCharacter(event.which);
-        backSpace(game, prevIndex);
-        displayStats(game);
-        if (game.isRoundOver()) {
-          game.clearTimer();
-          $("#start-button").show();
-          $("#paragraph-button").show();
-        }
+      keyDownEventListener(game, event);
+      if (game.isRoundOver()) {
+        endRound(game);
+        game.changePlayer();
       }
-      var keycode = (event.keyCode ? event.keyCode : event.which);
-      console.log('keycode is' + keycode)
-      let letter = String.fromCharCode(keycode)
-      console.log('letter converted from keycode is ' + letter)
-      const values = $('#keyboard input[value]')
-      console.log('value is' + values)
-      for (var i =0; i < values.length; i ++) {
-      if( letter === values[i].value) {
-
-        console.log(values[i])
-        $(values).removeClass('buttonPressEffect');
-        $(values[i]).addClass('buttonPressEffect');
-
-      }
-
-    }
     });
 
+    // ON KEY UP (visual keyboard release)
     $(document).keyup(function(event) {
-      event.preventDefault();
-      const values = $('#keyboard input[value]')
-      $(values).removeClass('buttonPressEffect');
-    })
+      keyUpEventListener(event);
+      if (game.isRoundOver()) {
+        endRound(game);
+      }
+    });
   });
-
 
   // ON CLICK OF CHANGE PARAGRAPH BUTTON
   $("#paragraph-button").click(function(event) {
     event.preventDefault();
     callAPI(game);
-    game.clearTimer();
-    $("#start-button").show();
+    endRound(game);
     $(".stats").empty();
   });
-
 });

@@ -81,6 +81,10 @@ _Babel_
 _Dad Jokes API_
 
 ### License
+<<<<<<< HEAD
 Copyright (c) 2020 **_Andrew Philpott, Sasa Schwartz, Jiwon Han, Jack Dunning_**
+=======
+Copyright (c) 2020 **_Andrew Philpott, Sasa Schwartz, Jiwon Han_**
+>>>>>>> cf08a7d22b58c4433543f123e295c1ff171b1ad2
 
 *This software is licensed under the MIT license.*
