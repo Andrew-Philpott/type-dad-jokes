@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  border: 5px solid purple;
+  /* border: 5px solid purple; */
   text-align: center;
   height: 100%;
 }
@@ -24,12 +24,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border: 3px solid green;
+  /* border: 3px solid green; */
   min-height: 80%;
 }
 
 #player-name {
-  border: 5px solid red;
+  /* border: 5px solid red; */
   font-size: 3em;
   display: flex;
   justify-content: center;
@@ -41,11 +41,11 @@ body {
   display: flex;
   justify-content: space-around;
   width: 80%;
-  border: 3px solid yellow;
+  /* border: 3px solid yellow; */
 }
 
 #stats-box {
-  border: 5px solid green;
+  /* border: 5px solid green; */
   width: 100%;
 }
 
@@ -54,7 +54,7 @@ body {
 }
 
 #paragraph-box {
-  border: 5px solid blue;
+  /* border: 5px solid blue; */
   min-height: 150px;
   width: 100%;
   line-height: 2.5;
@@ -307,7 +307,7 @@ span.next {
   display: inline-block;
   text-align: center;
   width: 780px;
-  border: 3px solid pink;
+  /* border: 3px solid pink; */
 }
 
 #keyboard div {
