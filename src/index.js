@@ -199,6 +199,7 @@ $(document).ready(function() {
       console.log('value is' + values)
       for (var i =0; i < values.length; i ++) {
       if( letter === values[i].value) {
+
         console.log(values[i])
         $(values).removeClass('buttonPressEffect');
         $(values[i]).addClass('buttonPressEffect');
