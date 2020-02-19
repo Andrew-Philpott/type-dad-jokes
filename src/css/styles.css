@@ -1,6 +1,6 @@
 .container {
   border: 5px solid purple;
-  /* text-align: center; */
+  text-align: center;
   height: 90vh;
 }
 
@@ -94,49 +94,6 @@ span.next {
   font-weight: 700;
   text-decoration: underline;
 }
-
-#keyboard {
-  display:inline-block;
-  padding:10px 15px;
-  border:1px solid white;
-  border-radius:10px;
-  background-color: white;
-  text-align:center;
-  width: 1000px;
-  height: 300px;
-  box-shadow:4px 4px 4px #999;
-}
-#keyboard div {
-  margin:5px 0;
-}
-#space {
-  width:300px;
-}
-#keyboard label {
-  margin-top:20px;
-  font-family:serif;
-  text-decoration:underline;
-}
-#keyboard input {
-  box-shadow:10px 10px 10px #666;
-  width:70px;
-  height: 50px;
-}
-
-.buttonPressEffect {
-  background-color: #efefef;
-  opacity: 0.3;
-  box-shadow:10px 10px 10px #666;
-  width:70px;
-  height: 50px;
-}
-
-/* #keyboard input[type="text"] {
-  margin-top:20px;
-  border:10px solid #999;
-  border-radius:4px;
-  box-shadow:none;
-} */
 
 #player-names-container {
   display: flex;
@@ -331,3 +288,49 @@ p {
   opacity: 0;
 }
 /* Traffic light end css */
+
+/* Keyboard */
+#keyboard {
+  display: inline-block;
+  text-align: center;
+  width: 780px;
+}
+
+#keyboard div {
+  margin: 5px 0;
+}
+
+#keyboard input {
+  box-shadow: 5px 5px 5px #666;
+  background-color: #efefef;
+  width: 70px;
+  height: 50px;
+}
+
+#keyboard input.buttonPressEffect {
+  background-color: #bfbfbf;
+  border: #666;
+  box-shadow: 10px 10px 10px #666;
+}
+
+@media (max-width: 1000px) {
+  #keyboard {
+    width: 580px;
+  }
+  #keyboard input {
+    width: 50px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  #keyboard {
+    width: 405px;
+  }
+  #keyboard input {
+    width: 35px;
+    height: 25px;
+  }
+}
+
+/* Keyboard */
