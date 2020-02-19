@@ -199,8 +199,10 @@ $(document).ready(function() {
       console.log(values)
       for (var i =0; i < values.length; i ++) {
       if( letter === values[i].value) {
-        $(values).click();
-      }
+        //values[i].css("background-color","#ccc");
+        console.log(values[i])
+        values[i].style.color ="red"
+      } 
     }
     });
   });
