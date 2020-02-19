@@ -90,3 +90,37 @@
 .next {
   text-decoration: underline;
 }
+
+#keyboard {
+  display:inline-block;
+  padding:10px 15px;
+  border:1px solid white;
+  border-radius:10px;
+  background-color: white;
+  text-align:center;
+  width: 1000px;
+  height: 300px;
+  box-shadow:4px 4px 4px #999;
+}
+#keyboard div {
+  margin:5px 0;
+}
+#space {
+  width:300px;
+}
+#keyboard label {
+  margin-top:20px;
+  font-family:serif;
+  text-decoration:underline;
+}
+#keyboard input {
+  box-shadow:10px 10px 10px #666;
+  width:70px;
+  height: 50px;
+}
+#keyboard input[type="text"] {
+  margin-top:20px;
+  border:10px solid #999;
+  border-radius:4px;
+  box-shadow:none;
+}

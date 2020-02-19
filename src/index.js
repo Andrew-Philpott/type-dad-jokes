@@ -105,7 +105,10 @@ $(document).ready(function() {
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();
+    $("#keyboard").show();
     updateEveryHalfSecond(game);
+
+    console.log('the value is' + $('#keyboard input[value]'))
   });
 
   // ON CLICK ON START BUTTON
@@ -128,6 +131,8 @@ $(document).ready(function() {
       }
     });
 
+
+
     // ON KEY DOWN (backspace recognition)
     $(document).keydown(function(event) {
       if (event.which === 8) {
@@ -138,7 +143,18 @@ $(document).ready(function() {
           $("#start-button").show();
           $("#paragraph-button").show();
         }
+      } 
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      console.log('keycode is' + keycode)
+      let letter = String.fromCharCode(keycode)
+      console.log('letter converted from keycode is ' + letter)
+      const values = $('#keyboard input[value]')
+      console.log(values)
+      for (var i =0; i < values.length; i ++) {
+      if( letter === values[i].value) {
+        $(values).click();
       }
+    }
     });
   });
 
@@ -150,4 +166,32 @@ $(document).ready(function() {
     $("#start-button").show();
     $(".stats").empty();
   });
+
+  $('keyboard').keyboard({
+    layout: 'qwerty',
+    css: {
+      // input & preview
+      input: 'form-control input-sm',
+      // keyboard container
+      container: 'center-block dropdown-menu', // jumbotron
+      // default state
+      buttonDefault: 'btn btn-default',
+      // hovered button
+      buttonHover: 'btn-primary',
+      // Action keys (e.g. Accept, Cancel, Tab, etc);
+      // this replaces "actionClass" option
+      buttonAction: 'active',								
+      // used when disabling the decimal button {dec}
+      // when a decimal exists in the input area
+      buttonDisabled: 'disabled'
+    }
+  })
+  .addTyping({
+    showTying: true,
+    delay: 50
+  })
+
+
+
+
 });
