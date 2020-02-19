@@ -92,16 +92,17 @@ function backSpace(game, prevIndex) {
 
 function displayStats(game) {
   game.calculateScore();
+  $("#player-name").text(game.currentPlayer.getName());
   $("#timer").text(`${game.getGameTime()}`);
   $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
   $("#cpm").text(`${game.currentPlayer.getCharactersPerMinute()}`);
   $("#errors").text(`${game.currentPlayer.getErrors()}`);
 }
 
-function updateEveryHalfSecond(game) {
+function updateEveryQuarterSecond(game) {
   setInterval(() => {
     displayStats(game);
-  }, 500);
+  }, 250);
 }
 
 function createPlayerNameInputs(numberOfPlayers) {
@@ -183,13 +184,11 @@ $(document).ready(function() {
       game.addPlayer(player);
     }
     $("player-name").show();
-    $("#player-name").text(game.currentPlayer.getName());
-
     $("#name-form").hide();
     $("#page-two").show();
     $("#paragraph-box").show();
     $("#keyboard").show();
-    updateEveryHalfSecond(game);
+    updateEveryQuarterSecond(game);
   });
 
   // ON CLICK ON START BUTTON
@@ -211,7 +210,6 @@ $(document).ready(function() {
       if (game.isRoundOver()) {
         endRound(game);
         game.changePlayer();
-        $("#player-name").text(game.currentPlayer.getName());
       }
     });
 
@@ -221,7 +219,6 @@ $(document).ready(function() {
       if (game.isRoundOver()) {
         endRound(game);
         game.changePlayer();
-        $("#player-name").text(game.currentPlayer.getName());
       }
     });
 
