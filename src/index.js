@@ -190,20 +190,31 @@ $(document).ready(function() {
           $("#start-button").show();
           $("#paragraph-button").show();
         }
-      } 
+      }
       var keycode = (event.keyCode ? event.keyCode : event.which);
       console.log('keycode is' + keycode)
       let letter = String.fromCharCode(keycode)
       console.log('letter converted from keycode is ' + letter)
       const values = $('#keyboard input[value]')
-      console.log(values)
+      console.log('value is' + values)
       for (var i =0; i < values.length; i ++) {
       if( letter === values[i].value) {
-        $(values).click();
+        console.log(values[i])
+        $(values).removeClass('buttonPressEffect');
+        $(values[i]).addClass('buttonPressEffect');
+
       }
+
     }
     });
+
+    $(document).keyup(function(event) {
+      event.preventDefault();
+      const values = $('#keyboard input[value]')
+      $(values).removeClass('buttonPressEffect');
+    })
   });
+
 
   // ON CLICK OF CHANGE PARAGRAPH BUTTON
   $("#paragraph-button").click(function(event) {
@@ -213,32 +224,5 @@ $(document).ready(function() {
     $("#start-button").show();
     $(".stats").empty();
   });
-
-  $('keyboard').keyboard({
-    layout: 'qwerty',
-    css: {
-      // input & preview
-      input: 'form-control input-sm',
-      // keyboard container
-      container: 'center-block dropdown-menu', // jumbotron
-      // default state
-      buttonDefault: 'btn btn-default',
-      // hovered button
-      buttonHover: 'btn-primary',
-      // Action keys (e.g. Accept, Cancel, Tab, etc);
-      // this replaces "actionClass" option
-      buttonAction: 'active',								
-      // used when disabling the decimal button {dec}
-      // when a decimal exists in the input area
-      buttonDisabled: 'disabled'
-    }
-  })
-  .addTyping({
-    showTying: true,
-    delay: 50
-  })
-
-
-
 
 });

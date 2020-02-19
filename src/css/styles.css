@@ -122,12 +122,22 @@ span.next {
   width:70px;
   height: 50px;
 }
-#keyboard input[type="text"] {
+
+.buttonPressEffect {
+  background-color: #efefef;
+  opacity: 0.3;
+  box-shadow:10px 10px 10px #666;
+  width:70px;
+  height: 50px;
+}
+
+/* #keyboard input[type="text"] {
   margin-top:20px;
   border:10px solid #999;
   border-radius:4px;
   box-shadow:none;
-}
+} */
+
 #player-names-container {
   display: flex;
   justify-content: left;
