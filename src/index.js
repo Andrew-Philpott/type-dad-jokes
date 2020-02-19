@@ -91,7 +91,9 @@ function backSpace(game, prevIndex) {
 }
 
 function displayStats(game) {
-  game.calculateScore();
+  if (!game.isRoundOver()) {
+    game.calculateScore();
+  }
   $("#player-name").text(game.currentPlayer.getName());
   $("#timer").text(`${game.getGameTime()}`);
   $("#wpm").text(`${game.currentPlayer.getWordsPerMinute()}`);
