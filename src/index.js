@@ -135,7 +135,12 @@ function endRound(game) {
     $("#start-button").text("Start Race");
     $("#game-page").hide();
     $("#results-page").show();
+    displayResults(game);
   }
+}
+
+function displayResults(game) {
+  /// jack
 }
 
 function keyPressEventListener(game, event) {
