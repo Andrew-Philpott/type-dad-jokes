@@ -10,7 +10,7 @@ body {
 .container {
   border: 5px solid purple;
   text-align: center;
-  height: 90vh;
+  height: 100%;
 }
 
 #name-form {
@@ -28,7 +28,7 @@ body {
 
 #player-name {
   border: 5px solid red;
-  margin: 5% 0 0 0;
+  margin: 10% 0 0 0;
   min-height: 100px;
   font-size: 3em;
   display: flex;
@@ -57,7 +57,7 @@ body {
 
 #paragraph-box {
   border: 5px solid blue;
-  margin: 5% 0 0 0;
+  margin: 10% 0 0 0;
   min-height: 150px;
   width: 100%;
   line-height: 2.5;
