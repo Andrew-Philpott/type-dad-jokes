@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: #dbf0db;
+  background-color: #bfbfbf;
 }
 
 .container {
@@ -143,7 +143,6 @@ span.next {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid blue;
 }
 
 #player-results-container {
@@ -153,7 +152,8 @@ span.next {
 }
 
 .results-section {
-  border: 5px solid black;
+  border-radius: 25px;
+  background-color: white;
   width: 45%;
   min-height: 500px;
   padding: 20px;
@@ -164,11 +164,10 @@ span.next {
 }
 
 .results-section p {
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 .results-section span {
-  font-size: 1.2em;
   font-weight: 600;
 }
 
