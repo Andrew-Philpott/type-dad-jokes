@@ -14,6 +14,11 @@ export class Game {
     this.paragraph = "";
     this.errors = 0;
     this.wordsCorrect = 0;
+    this.currentPlayer;
+  }
+
+  setCurrentPlayer(value) {
+    this.currentPlayer = this.players[value];
   }
   getErrors() {
     return this.errors;
@@ -118,6 +123,18 @@ export class Game {
     }
   }
 
+  changePlayer() {
+    if (this.players.length !== 1) {
+      if (this.currentPlayer === this.players[0]) {
+        this.setCurrentPlayer(1);
+      } else {
+        this.setCurrentPlayer(0);
+      }
+    } else {
+      this.setCurrentPlayer(0);
+    }
+  }
+
   checkCharacter(pushedKey) {
     if (pushedKey === 8) {
       if (
@@ -147,16 +164,22 @@ export class Game {
       }
     }
   }
-  calculateScore(player) {
-    if (player instanceof Player) {
-      player.setWordsPerMinute(this.calculateWordsPerMintue());
-      player.setCharactersPerMinute(this.calculateCharactersPerMintue());
-      player.setErrors(this.getErrors());
+  calculateScore() {
+    if (this.currentPlayer instanceof Player) {
+      this.currentPlayer.setWordsPerMinute(this.calculateWordsPerMintue());
+      this.currentPlayer.setCharactersPerMinute(
+        this.calculateCharactersPerMintue()
+      );
+      this.currentPlayer.setErrors(this.getErrors());
     }
   }
   calculateWordsPerMintue() {
-    let wordsPerMinute = parseFloat((this.wordsCorrect / this.gameTime) * 60);
-    return wordsPerMinute;
+    if (this.wordsCorrect === 0) {
+      return 0;
+    } else {
+      let wordsPerMinute = Math.floor((this.wordsCorrect / this.gameTime) * 60);
+      return wordsPerMinute;
+    }
   }
   calculateCharactersPerMintue() {
     let numberOfCorrectMatches = 0;
@@ -169,7 +192,7 @@ export class Game {
     if (numberOfCorrectMatches === 0) {
       return 0;
     } else {
-      charactersPerMinute = parseFloat(
+      charactersPerMinute = Math.floor(
         (numberOfCorrectMatches / this.gameTime) * 60
       );
     }
@@ -185,5 +208,6 @@ export class Game {
 
   addPlayer(playerObj) {
     this.players.push(playerObj);
+    this.setCurrentPlayer(0);
   }
 }

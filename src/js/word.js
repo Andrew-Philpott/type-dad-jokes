@@ -4,7 +4,7 @@ export class Word {
     this.isCorrect = false;
     this.timeCompleted = 0;
   }
-  getisCorrect() {
+  getIsCorrect() {
     return this.isCorrect;
   }
   setIsCorrecctToTrue() {
