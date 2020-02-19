@@ -142,13 +142,24 @@ function endRound(game) {
 }
 
 function displayResults(game) {
-  for(let i = 0; i < game.players.length; i++) {
-    $(`#player${i}-results`).append(`Player: ${game.players[i].getName()}`);
-    $(`#player${i}-results`).append(`Words per Minute: ${game.players[i].getWordsPerMinute()}`);
-    $(`#player${i}-results`).append(`Characters per Minute: ${game.players[i].getCharactersPerMinute()}`);
-    $(`#player${i}-results`).append(`Errors: ${game.players[i].getErrors()}`);
+  for (let i = 0; i < game.players.length; i++) {
+    $(`#player${i}-results`).append(
+      `<p><span>Player:</span> ${game.players[i].getName()}</p>`
+    );
+    $(`#player${i}-results`).append(
+      `<p><span>Words per Minute:</span> ${game.players[
+        i
+      ].getWordsPerMinute()}</p>`
+    );
+    $(`#player${i}-results`).append(
+      `<p><span>Characters per Minute:</span> ${game.players[
+        i
+      ].getCharactersPerMinute()}</p>`
+    );
+    $(`#player${i}-results`).append(
+      `<p><span>Errors: </span>${game.players[i].getErrors()}</p>`
+    );
   }
-
 }
 
 function keyPressEventListener(game, event) {

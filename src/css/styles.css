@@ -17,13 +17,6 @@ body {
   background-color: #dbf0db;
 }
 
-button {
-  background-color: white;
-  border: none;
-  padding: 15px;
-  font-size: 1.2em;
-}
-
 .container {
   text-align: center;
   height: 100%;
@@ -168,6 +161,15 @@ span.next {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.results-section p {
+  font-size: 1.2em;
+}
+
+.results-section span {
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 /* Traffic light css */
