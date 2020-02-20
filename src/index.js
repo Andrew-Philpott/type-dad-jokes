@@ -28,16 +28,11 @@ function callAPI(game) {
     });
 }
 
-// function recordErrorsOnKeyboard() {
-
-// }
-
 function formatParagraph(paragraph) {
   // Shorten paragrph to 100 words
   let shortWordsArray = paragraph.split(" ");
   if (shortWordsArray.length > 100) {
-    // shortWordsArray = shortWordsArray.slice(0, 101);
-    shortWordsArray = shortWordsArray.slice(0, 10);
+    shortWordsArray = shortWordsArray.slice(0, 101);
   } else {
     shortWordsArray = shortWordsArray.slice(0);
   }
@@ -124,7 +119,7 @@ function createPlayerNameInputs(numberOfPlayers) {
     }
   }
   nameInputsHtml += `<button id='name-button' class='game-button rounded-white' type='submit'>Submit</button></div>`;
-  
+
   nameForm.html(nameInputsHtml);
 }
 

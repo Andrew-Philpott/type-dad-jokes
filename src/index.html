@@ -20,102 +20,118 @@
       <div id="header">
         <div id="title">
           <h1>Typing Dad Jokes</h1>
-          <hr>
+          <hr />
         </div>
-        <div class="jumbotron white-box">   
-            <p>The <em>REAL</em> assessment of your typing skills.</p>
-            <p>How good of a typer are you when you're typing hilarious dad jokes? Typing Dad Jokes provides detailed information on
-              your typing skills in real time. Words per minute, characters per minute, character errors, and total time 
-              are tracked while you type out 100 words worth of dad's jokes. Play with a friend or against yourself and compare 
-              on your words per minute, characters per minute,</p>
+        <div class="jumbotron white-box">
+          <p>The <em>REAL</em> assessment of your typing skills.</p>
+          <p>
+            How good of a typer are you when you're typing hilarious dad jokes?
+            Typing Dad Jokes provides detailed information on your typing skills
+            in real time. Words per minute, characters per minute, character
+            errors, and total time are tracked while you type out 100 words
+            worth of dad's jokes. Play with a friend or against yourself and put
+            your pedal to the metal!
+          </p>
         </div>
       </div>
-          <div id="players-select">
-              <button class="players-button rounded-white" id="one-player-button" value="1">
-                Single Player
-              </button>
-              <button class="players-button rounded-white" id="one-player-button" value="2">
-                Two Players
-              </button>
-            </div>
-            <form id="name-form"></form>
-            <div id="game-page">
-              <div id="player-name"></div>
-      
-              <div id="buttons">
-                <button id="start-button" class='game-button rounded-white'>Start Race</button>
-                <button id="paragraph-button" class='game-button rounded-white'>Change Text</button>
-              </div>
-      
-              <div id="paragraph-box">
-                <div id="paragraph-padding"  class='white-box'>
-                  <div id="paragraph"></div>
-                </div>
-              </div>
-      
-              <div id="stats-box" class="row white-box">
-                <div class="col-md-3">
-                  <h5>Timer:</h5>
-                  <p id="timer" class="stats"></p>
-                </div>
-                <div class="col-md-3">
-                  <h5>Words/Min:</h5>
-                  <p id="wpm" class="stats"></p>
-                </div>
-                <div class="col-md-3">
-                  <h5>Characters/Min:</h5>
-                  <p id="cpm" class="stats"></p>
-                </div>
-                <div class="col-md-3">
-                  <h5>Errors:</h5>
-                  <p id="errors" class="stats"></p>
-                </div>
-              </div>
-              
-                <div id="keyboard">
-      
-                  <div>
-                   <input type="button" value="Q">
-                   <input type="button" value="W">
-                   <input type="button" value="E">
-                   <input type="button" value="R">
-                   <input type="button" value="T">
-                   <input type="button" value="Y">
-                   <input type="button" value="U">
-                   <input type="button" value="I">
-                   <input type="button" value="O">
-                   <input type="button" value="P">
-                  </div>
-                  <div>
-                   <input type="button" value="A">
-                   <input type="button" value="S">
-                   <input type="button" value="D">
-                   <input type="button" value="F">
-                   <input type="button" value="G">
-                   <input type="button" value="H">
-                   <input type="button" value="J">
-                   <input type="button" value="K">
-                   <input type="button" value="L">
-                  </div>
-                  <div>
-                   <input type="button" value="Z">
-                   <input type="button" value="X">
-                   <input type="button" value="C">
-                   <input type="button" value="V">
-                   <input type="button" value="B">
-                   <input type="button" value="N">
-                   <input type="button" value="M">
-                  </div>
-                  
-                </div>
-            </div>
-              <div id="results-page">
-                  <div id="player-results-container">
-                    <div class="results-section white-box" id="player0-results"></div>
-                    <div class="results-section white-box" id="player1-results"></div>
-                  </div>
-                  <button id="new-game" class='game-button rounded-white'>New Game</button>
-                </div>
+      <div id="players-select">
+        <button
+          class="players-button rounded-white"
+          id="one-player-button"
+          value="1"
+        >
+          Single Player
+        </button>
+        <button
+          class="players-button rounded-white"
+          id="one-player-button"
+          value="2"
+        >
+          Two Players
+        </button>
+      </div>
+      <form id="name-form"></form>
+      <div id="game-page">
+        <div id="player-name"></div>
+
+        <div id="buttons">
+          <button id="start-button" class="game-button rounded-white">
+            Start Race
+          </button>
+          <button id="paragraph-button" class="game-button rounded-white">
+            Change Text
+          </button>
+        </div>
+
+        <div id="paragraph-box" class="white-box">
+          <div id="paragraph-padding">
+            <div id="paragraph"></div>
+          </div>
+        </div>
+
+        <div id="stats-box" class="row white-box">
+          <div class="col-md-3">
+            <h5>Timer:</h5>
+            <p id="timer" class="stats"></p>
+          </div>
+          <div class="col-md-3">
+            <h5>Words/Min:</h5>
+            <p id="wpm" class="stats"></p>
+          </div>
+          <div class="col-md-3">
+            <h5>Characters/Min:</h5>
+            <p id="cpm" class="stats"></p>
+          </div>
+          <div class="col-md-3">
+            <h5>Errors:</h5>
+            <p id="errors" class="stats"></p>
+          </div>
+        </div>
+
+        <div id="keyboard">
+          <div>
+            <input type="button" value="Q" />
+            <input type="button" value="W" />
+            <input type="button" value="E" />
+            <input type="button" value="R" />
+            <input type="button" value="T" />
+            <input type="button" value="Y" />
+            <input type="button" value="U" />
+            <input type="button" value="I" />
+            <input type="button" value="O" />
+            <input type="button" value="P" />
+          </div>
+          <div>
+            <input type="button" value="A" />
+            <input type="button" value="S" />
+            <input type="button" value="D" />
+            <input type="button" value="F" />
+            <input type="button" value="G" />
+            <input type="button" value="H" />
+            <input type="button" value="J" />
+            <input type="button" value="K" />
+            <input type="button" value="L" />
+          </div>
+          <div>
+            <input type="button" value="Z" />
+            <input type="button" value="X" />
+            <input type="button" value="C" />
+            <input type="button" value="V" />
+            <input type="button" value="B" />
+            <input type="button" value="N" />
+            <input type="button" value="M" />
+          </div>
+        </div>
+      </div>
+      <div id="results-page">
+        <div id="player-results-container">
+          <div class="results-section white-box" id="player0-results"></div>
+          <div class="results-section white-box" id="player1-results"></div>
+        </div>
+        <button id="new-game" class="game-button rounded-white">
+          New Game
+        </button>
+      </div>
     </div>
   </body>
 </html>
