@@ -28,6 +28,10 @@ function callAPI(game) {
     });
 }
 
+// function recordErrorsOnKeyboard() {
+
+// }
+
 function formatParagraph(paragraph) {
   // Shorten paragrph to 100 words
   let shortWordsArray = paragraph.split(" ");
