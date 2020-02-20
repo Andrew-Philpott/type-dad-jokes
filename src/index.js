@@ -115,15 +115,15 @@ function createPlayerNameInputs(numberOfPlayers) {
   let numberOfPlayersToNumber = parseInt(numberOfPlayers);
   let nameForm = $("#name-form");
   let nameInputsHtml = ``;
-  nameInputsHtml += `<div id='player-names-container' class='form-group'><h1>Enter your names</h1>`;
   if (numberOfPlayersToNumber === 1) {
-    nameInputsHtml += `<div class='name-container rounded-white'><label for='name-input-1'>Enter your name:</label><input class='player-name-input' type='text' id='name-input-1' required /></div>`;
+    nameInputsHtml += `<div id='player-names-container' class='form-group'><div class='name-container rounded-white'><label for='name-input-1'>Name: </label><input class='player-name-input' type='text' id='name-input-1' required /></div>`;
   } else {
+    nameInputsHtml += `<div id='player-names-container' class='form-group'><h1>Enter your names</h1>`;
     for (let i = 1; i <= numberOfPlayersToNumber; i++) {
       nameInputsHtml += `<div class='name-container rounded-white'><label for='name-input-${i}'>Player ${i}</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
     }
   }
-  nameInputsHtml += `<button id='name-button' class='rounded-white' type='submit'>Submit</button></div>`;
+  nameInputsHtml += `<button id='name-button' class='game-button rounded-white' type='submit'>Submit</button></div>`;
   
   nameForm.html(nameInputsHtml);
 }
