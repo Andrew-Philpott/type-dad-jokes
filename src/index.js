@@ -120,7 +120,7 @@ function createPlayerNameInputs(numberOfPlayers) {
     }
   }
   nameInputsHtml += `<button id='name-button' class='rounded-white' type='submit'>Submit</button></div>`;
-  
+
   nameForm.html(nameInputsHtml);
 }
 
