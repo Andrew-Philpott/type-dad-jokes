@@ -8,17 +8,20 @@ med grey: BFBFBF
 
 html,
 body {
-  background-image: url("../img/racing.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: black;
   color: whitesmoke;
+}
+
+body {
+  background-color: black;
+  background-image: url("../img/racing.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
