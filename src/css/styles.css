@@ -94,16 +94,16 @@ body {
 #paragraph {
   display: inline-block;
   width: 80%;
+  color: black;
 }
 
 #paragraph-padding { 
+  opacity: 90%;
+  background: radial-gradient(circle farthest-side, whitesmoke, white);
+  border-radius: 5%;
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  opacity: 95%;
-  background: radial-gradient(circle farthest-side, whitesmoke, white);
-  border-radius: 5%;
-  color: black;
 }
 
 #paragraph-button {
@@ -155,6 +155,7 @@ span.next {
   display: flex;
   align-items: center;
   flex-direction: row;
+  padding-right: 10px;
 }
 .name-container:first-of-type {
   background-color: red;
@@ -169,7 +170,7 @@ span.next {
 }
 .name-container input {
   width: 56%;
-  height: 100%;
+  height: 50%;
   border-radius: 25px;
   margin-left: 20px;
   border-bottom: 2px solid white;
