@@ -123,13 +123,8 @@ function createPlayerNameInputs(numberOfPlayers) {
       nameInputsHtml += `<div class='name-container rounded-white'><label for='name-input-${i}'>Player ${i}</label><input class='player-name-input' type='text' id='name-input-${i}' required /></div>`;
     }
   }
-<<<<<<< HEAD
-  nameInputsHtml += `<button id='name-button' class='rounded-white' type='submit'>Submit</button></div>`;
-
-=======
   nameInputsHtml += `<button id='name-button' class='game-button rounded-white' type='submit'>Submit</button></div>`;
   
->>>>>>> ap
   nameForm.html(nameInputsHtml);
 }
 
