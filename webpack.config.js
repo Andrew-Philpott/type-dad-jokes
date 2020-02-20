@@ -11,32 +11,33 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'eval-source-map',
-  devServer: {               
-    contentBase: './dist'    
+  devServer: {
+    contentBase: './dist'
   },
   plugins: [
+    new Dotenv(),
     new UglifyJsPlugin({ sourceMap: true }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Ping Pong',
+      title: 'Project Title',
       template: './src/index.html',
       inject: 'body'
-    }),
-    new Dotenv()
+    })
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
+        loader: 'eslint-loader'
+      },
+      {
+        test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+        loader: 'url-loader?limit=100000'
       }
     ]
   }
