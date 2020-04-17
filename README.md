@@ -1,4 +1,4 @@
-# Typing Game
+# Type Dad Jokes
 
 #### A typing speed game, 02.20.2020\_
 
